@@ -1,0 +1,124 @@
+
+$(document).ready(
+    function () {
+        var powers = {
+            mage: [
+                { name: "Alter", base_energy: 0 },
+                { name: "Barrier", base_energy: 0 },
+                { name: "Disorient", base_energy: 0 },
+                { name: "Energy Blast", base_energy: 5 },
+                { name: "Impact Attack", base_energy: 0 },
+                { name: "Telekinesis", base_energy: 10 },
+                { name: "Portal", base_energy: 10 }
+            ],
+
+            mystic: [
+                { name: "Daze", base_energy: 10 },
+                { name: "Horrify", base_energy: 5 },
+                { name: "Obscure", base_energy: 10 },
+                { name: "Torment", base_energy: 5 }
+            ]
+        };
+
+        var mage_select = '<select class="powers">' +
+            '<option value="-"> - </option>' +
+            powers.mage.map(
+                function (p, i) {
+                    return '<option value="' + i + '">' + p.name + '</option>';
+                }
+            ).join("\n") + '</select>'
+        ;
+
+        var mystic_select = '<select class="powers">' +
+            '<option value="-"> - </option>' +
+            powers.mystic.map(
+                function (p, i) {
+                    return '<option value="' + i + '">' + p.name + '</option>';
+                }
+            ).join("\n") + '</select>'
+        ;
+
+        function mkrow (yarr) {
+            return '<tr>' +
+                yarr.map(
+                    function (y) {
+                        return '<td>' + y + '</td>';
+                    }
+                ).join("\n") +
+            '</tr>';
+        }
+
+        function switch_magic_type () {
+            var to = $('input[name="magic_type"]:checked').val(),
+                sel = (to === 'mage') ? mage_select : mystic_select,
+                row = mkrow([ sel, '<input class="intensity" size="3">', '<span class="energy-cost"> - </span>' ]),
+                nu_tbody = [ row, row, row, row, row ].join("\n")
+            ;
+
+            $('#powers > tbody').html(nu_tbody);
+            $('.powers').change(calculon);
+            $('input.intensity').change(calculon);
+        }
+
+        function calculon () {
+            function aord_to_energy (aord) {
+                return Math.ceil( Math.log2(aord) * 3 );
+            }
+
+            function set_nrg (name) {
+                var aord = parseInt( $('#' + name).val() );
+
+                if (isNaN(aord) || aord < 1) {
+                    aord = 1;
+                }
+
+                $('#' + name + '-energy').text(
+                    aord_to_energy(aord)
+                );
+            }
+
+            $('#powers > tbody > tr').each(
+                function () {
+                    var p = $(this).find('.powers').val() || 0,
+                        intensity = 0,
+                        energy = '-',
+                        type = $('input[name="magic_type"]:checked').val()
+                    ;
+
+                    if (p !== '-') {
+                        intensity = parseInt( $(this).find('input.intensity').val() || 0 );
+                        energy = powers[type][p].base_energy + intensity;
+                    }
+
+                    $(this).find('.energy-cost').text(energy);
+                }
+            );
+
+            set_nrg('area');
+            set_nrg('duration');
+
+            var total_energy = 0;
+
+            $('.energy-cost').each(
+                function () {
+                    var val = parseInt($(this).text());
+
+                    if (!isNaN(val)) {
+                        total_energy += val;
+                    }
+                }
+            );
+
+            total_energy += parseInt($('#area-energy').text()) + parseInt($('#duration-energy').text());
+
+            $('#total-energy').text(total_energy);
+        }
+
+        switch_magic_type();
+
+        $('#area').change(calculon);
+        $('#duration').change(calculon);
+        $('input[name="magic_type"]').change(switch_magic_type);
+    }
+);
+

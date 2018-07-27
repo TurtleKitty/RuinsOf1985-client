@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+
+        <meta charset="UTF-8">
+
+        <title> Canvas Playground </title>
+
+        <style>
+
+            body {
+                color: #ffff00;
+                background-color: #000020;
+                margin: 10px;
+                padding: 10px;
+            }
+
+            #container {
+                width: 1200px;
+                height: 800px;
+                margin-left: 20px;
+                padding-left: 20px;
+                padding-top: 0px;
+            }
+
+            td {
+                margin: 3px;
+                padding: 3px;
+            }
+
+        </style>
+
+        <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+        <script type="text/javascript" src="js/fov.js"></script>
+
+    </head>
+
+    <body>
+
+        <div id="container">
+
+            <p>
+                <h1>
+                    <center>
+                    PLAYGROUND
+                    </center>
+                </h1>
+            </p>
+
+            <table>
+                <tr>
+                    <td align="left" rowspan="4">
+                        <canvas id="playground" tabindex="1" width="1100" height="700">
+                            Hello, canvas!
+                        </canvas>
+                    </td>
+                    <td align="left">
+                        <div>
+                            Px: (<span id="pxx"> 0 </span>, <span id="pxy"> 0 </span></span>)
+                        </div>
+
+                        <div>
+                            Cell: (<span id="cellx"> 0 </span>, <span id="celly"> 0 </span></span>)
+                        </div>
+
+                        <div>
+                            Grid: (<span id="gridx"> 0 </span>, <span id="gridy"> 0 </span></span>)
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td id="message"> </td>
+                </tr>
+                <tr>
+                    <td>
+Keys:<br>
+<pre>
+    8          w
+  7   9  OR  q   e
+  4   6      a   d
+    5          s
+</pre>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left">
+                        <label for="width"> Width </label> <input id="width" type="text" value="60"> <br>
+                        <label for="height"> Height </label> <input id="height" type="text" value="40"> <br>
+                        <label for="floor"> Floor </label> <input id="floor" type="text" value="20"> <br>
+                        <label for="wall"> Wall </label> <input id="wall" type="text" value="1"> <br>
+                        <label for="water"> Water </label> <input id="water" type="text" value="1"> <br>
+                        <label for="fog"> Fog </label> <input id="fog" type="text" value="1"> <br>
+                        <label for="sight_radius"> Sight Radius </label> <input id="sight_radius" type="text" value="20"> <br>
+                        <button id="redraw"> Go </button>
+                    </td>
+                </tr>
+            </table>
+
+        </div>
+
+    </body>
+
+</html>

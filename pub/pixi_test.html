@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="UTF-8">
+
+      <title> Pixi.js Playground </title>
+
+      <link rel="stylesheet" type="text/css" href="/css/pixi_test.css" />
+
+      <script type="text/javascript" src="/js/pixi.min.js"></script>
+      <script type="text/javascript" src="/js/pixi_test.js"></script>
+
+      <script>
+
+         function genMap () {
+            var boundary = 255,
+               randomCellArray = [ ],
+               weightSum = 0
+            ;
+
+            getWeights();
+
+            var mapW = RuinsOf1985.getInt('map_size');
+
+            if (mapW > boundary) {
+               mapW = boundary;
+               RuinsOf1985.setVal('map_size', boundary);
+            }
+
+            var mapH = mapW
+
+            var min = { x: 0, y: 0 };
+
+            var max = {
+               x: mapW,
+               y: Math.round(mapW/2) + mapH
+            };
+
+            function getWeights () {
+               var keys = [ "dungeon_floor", "brick_wall", "cave_wall", "door", "gate", "waist_high_water", "shallow_water", "deep_water", "violet_fog", "chasm" ];
+
+               var weights = { };
+
+               keys.forEach(function (k) {
+                  var val = RuinsOf1985.getInt(k + "_weight");
+
+                  if (val > 100) {
+                     val = 100;
+                     RuinsOf1985.setVal(k + "_weight", 100);
+                  }
+
+                  weights[k] = val;
+               });
+
+               weightSum = keys.reduce(
+                  function (sum, k) {
+                     return sum + weights[k];
+                  },
+                  0
+               );
+
+               keys.map(
+                  function (k) {
+                     for (var i = 0; i < weights[k]; i++) {
+                        randomCellArray.push(k);
+                     }
+                  }
+               );
+            }
+
+            function randomCell () {
+               return { type: randomCellArray[RuinsOf1985.die(weightSum) - 1] };
+            }
+
+            function randomGraph (min, max) {
+               var graph = [];
+
+               for (var x = min.x; x <= max.x; x++) {
+                  graph[x] = [];
+                  for (var y = min.y; y <= max.y; y++) {
+                     var twoY = 2 * y,
+                        twoTheMax = 2 * (y - max.x),
+                        tooLow  = (x > twoY+1),
+                        tooHigh = (x < twoTheMax)
+                     ;
+
+                     if (tooLow || tooHigh) {
+                        graph[x][y] = { type: "cave_wall" };
+                        continue;
+                     }
+
+                     if (x === min.x || x === max.x || x === twoY || x === twoY + 1 || x === twoTheMax || x === twoTheMax + 1) {
+                        graph[x][y] = { type: "brick_wall" };
+                        continue;
+                     }
+
+                     if (x <= 3 && y <= 3 && RuinsOf1985.distance({ x: 1, y: 1 }, { x: x, y: y }) < 3) {
+                        graph[x][y] = { type: "dungeon_floor" };
+                        continue;
+                     } 
+
+                     graph[x][y] = randomCell();
+                  }
+               }
+
+               return graph;
+            }
+
+            RuinsOf1985.messagePlayer('Generating map...');
+
+            return randomGraph(min, max);
+         }
+
+         function reloadMap () {
+            RuinsOf1985.setup(genMap(), { x: 1, y: 1 });
+         }
+
+         window.onload = function () {
+
+            window.addEventListener(
+               "mousemove",
+               function (e) {
+                  var pos = RuinsOf1985.getMousePos(e),
+                     cell = RuinsOf1985.pxToCell(pos)
+                  ;
+
+                  RuinsOf1985.setHTML("pxx", pos.x);
+                  RuinsOf1985.setHTML("pxy", pos.y);
+                  RuinsOf1985.setHTML("cellx", cell.x);
+                  RuinsOf1985.setHTML("celly", cell.y);
+                  RuinsOf1985.setHTML("cell_distance", RuinsOf1985.dr(cell));
+               }
+            );
+
+            window.addEventListener(
+               "click",
+               function (e) {
+                  var pos = RuinsOf1985.getMousePos(e),
+                     cell = RuinsOf1985.pxToCell(pos)
+                  ;
+
+                  RuinsOf1985.selectCell(cell);
+               }
+            );
+
+            window.addEventListener(
+               'keypress',
+               function(e) {
+                  var moveGuy = RuinsOf1985.movePlayer;
+
+                  /*
+
+                  switch (e.key) { // whenever browsers support it...
+                     case "q":
+                        moveGuy(0, 1);
+                        break;
+                     case "w":
+                        moveGuy(0, 1);
+                        break;
+                     case "e":
+                        moveGuy(1, 1);
+                        break;
+                     case "a":
+                        moveGuy(-1, -shiftdown);
+                        break;
+                     case "s":
+                        moveGuy(0, -1);
+                        break;
+                     case "d":
+                        moveGuy(1, -shiftdown);
+                        break;
+                     case "7":
+                        moveGuy(-1, shiftup);
+                        break;
+                     case "8":
+                        moveGuy(0, 1);
+                        break;
+                     case "9":
+                        moveGuy(1, shiftup);
+                        break;
+                     case "4":
+                        moveGuy(-1, -shiftdown);
+                        break;
+                     case "5":
+                        moveGuy(0, -1);
+                        break;
+                     case "6":
+                        moveGuy(1, -shiftdown);
+                        break;
+                  }
+
+                  */
+
+                  switch (e.keyCode) {
+                     case 55:
+                        moveGuy(-1, 0);
+                        break;
+                     case 56:
+                        moveGuy(0, 1);
+                        break;
+                     case 57:
+                        moveGuy(1, 1);
+                        break;
+                     case 52:
+                        moveGuy(-1, -1);
+                        break;
+                     case 53:
+                        moveGuy(0, -1);
+                        break;
+                     case 54:
+                        moveGuy(1, 0);
+                        break;
+                     case 113:
+                        moveGuy(-1, 0);
+                        break;
+                     case 119:
+                        moveGuy(0, 1);
+                        break;
+                     case 101:
+                        moveGuy(1, 1);
+                        break;
+                     case 97:
+                        moveGuy(-1, -1);
+                        break;
+                     case 115:
+                        moveGuy(0, -1);
+                        break;
+                     case 100:
+                        moveGuy(1, 0);
+                        break;
+                  }
+               }
+            );
+
+            RuinsOf1985.init(genMap(), { x: 1, y: 1 });
+         };
+      </script>
+   </head>
+
+   <body>
+
+      <div class="title">
+         Ruins of 1985
+      </div>
+
+      <div style="margin: 0; padding: 0;">
+         <div id="viewport">
+            <span id="map-view">
+            </span>
+            <span id="info-view">
+               <div id="status-view">
+               </div>
+               <div id="messages-view">
+               </div>
+            </span>
+         </div>
+
+         <div class="weights" style="margin: 64px; display: inline-block">
+            Keys:<br>
+            <pre>
+       8          w
+     7   9  OR  q   e
+     4   6      a   d
+       5          s
+            </pre>
+
+            <div>
+               Px: (<span id="pxx"> 0 </span>, <span id="pxy"> 0 </span></span>)
+            </div>
+
+            <div>
+               Cell: (<span id="cellx"> 0 </span>, <span id="celly"> 0 </span></span>)
+            </div>
+
+            <div>
+               Distance: <span id="cell_distance"> 0 </span>
+            </div>
+
+            <div style="margin: 6px"><label for="map_size"><input style="margin-right: 5px" type="text" size="2" id="map_size" value="30">map size</label></div>
+            <div style="margin: 6px"><label for="dungeon_floor_weight"><input style="margin-right: 5px" type="text" size="2" id="dungeon_floor_weight" value="100">dungeon floor</label></div>
+            <div style="margin: 6px"><label for="brick_wall_weight"><input value="0" style="margin-right: 5px" type="text" size="2" id="brick_wall_weight">brick wall</label></div>
+            <div style="margin: 6px"><label for="cave_wall_weight"><input value="0" style="margin-right: 5px" type="text" size="2" id="cave_wall_weight">cave wall</label></div>
+            <div style="margin: 6px"><label for="door_weight"><input value="0" style="margin-right: 5px" type="text" size="2" id="door_weight">door</label></div>
+            <div style="margin: 6px"><label for="gate_weight"><input value="0" style="margin-right: 5px" type="text" size="2" id="gate_weight">gate</label></div>
+            <div style="margin: 6px"><label for="shallow_water_weight"><input value="0" style="margin-right: 5px" type="text" size="2" id="shallow_water_weight">shallow water</label></div>
+            <div style="margin: 6px"><label for="waist_high_water_weight"><input value="0" style="margin-right: 5px" type="text" size="2" id="waist_high_water_weight">waist-high water</label></div>
+            <div style="margin: 6px"><label for="deep_water_weight"><input value="0" style="margin-right: 5px" type="text" size="2" id="deep_water_weight">deep water</label></div>
+            <div style="margin: 6px"><label for="violet_fog_weight"><input value="0" style="margin-right: 5px" type="text" size="2" id="violet_fog_weight">violet fog</label></div>
+            <div style="margin: 6px"><label for="chasm_weight"><input value="0" style="margin-right: 5px" type="text" size="2" id="chasm_weight">chasm</label></div>
+            <div style="margin: 6px"> <button id="go-map" type="button" style="width: 64px" onclick="reloadMap()"> Go! </button></div>
+         </div>
+      </div>
+   </body>
+</html>

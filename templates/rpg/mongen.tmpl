@@ -1,0 +1,199 @@
+
+<script src="../js/mongen.js"></script>
+
+<div class="main-section">
+<form action="#">
+    <div class="table">
+        <div class="cell">
+            <div class="name-block">
+                <h1 style="padding-bottom: 0; margin-bottom: 0; padding-top: 0; margin-top: 0;"> Ruins & Raiders </h1>
+                monster generator
+            </div>
+        </div>
+
+        <div class="cell" style="margin: 10%">
+            <div>
+                <div> Name </div>
+                <input type="text" size="40">
+            </div>
+
+            <div>
+                <div> Description </div>
+                <textarea rows="4" cols="40"></textarea>
+            </div>
+        </div>
+    </div>
+
+    <div class="table">
+        <div class="cell">
+            <table id="traits"> </table>
+            <table id="special-defenses">
+                <tr> <th> Special <br> Defense </th> <th> Bonus </th> <th> Cost </th> </tr>
+                <tr> <td> movement </td> <td> <input class="num" type="text" size="3" id="movement-level"> </td> <td> <span id="movement-cost"> 0 </span> </td> </tr>
+                <tr> <td> defense </td> <td> <input class="num" type="text" size="3" id="defense-level"> </td> <td> <span id="defense-cost"> 0 </span> </td> </tr>
+                <tr> <td> defiance </td> <td> <input class="num" type="text" size="3" id="defiance-level"> </td> <td> <span id="defiance-cost"> 0 </span> </td> </tr>
+                <tr> <td> toughness </td> <td> <input class="num" type="text" size="3" id="toughness-level"> </td> <td> <span id="toughness-cost"> 0 </span> </td> </tr>
+                <tr> <td> stability </td> <td> <input class="num" type="text" size="3" id="stability-level"> </td> <td> <span id="stability-cost"> 0 </span> </td> </tr>
+                <tr> <td> wounds </td> <td> <input class="num" type="text" size="3" id="wounds"> </td> <td> <span id="wounds-cost"> 0 </span> </td> </tr>
+                <tr> <td> shocks </td> <td> <input class="num" type="text" size="3" id="shocks"> </td> <td> <span id="shocks-cost"> 0 </span> </td> </tr>
+            </table>
+        </div>
+        <div class="cell">
+            <table id="skills"> </table>
+            <table id="gifts"> </table>
+        </div>
+        <div class="cell">
+            <table id="weapons">
+            </table>
+            <table id="armor">
+            </table>
+            <table>
+                <tr><th> Fortune </th> <td> <input id="fortune" class="num" type="text" size="3" value="0"> </td> </tr>
+                <tr><th> Traits </th> <td> <span id="trait-cost"></span> </td></tr>
+                <tr><th> Skills </th> <td> <span id="skill-cost"></span> </td></tr>
+                <tr><th> Gifts </th> <td> <span id="gift-cost"></span> </td></tr>
+                <tr><th> Special <br> Defenses </th> <td> <span id="special-def-cost"></span> </td></tr>
+                <tr><th> Special <br> Attacks </th> <td> <span id="special-atk-cost"></span> </td></tr>
+                <tr><th> <b> TOTAL </b> </th> <td> <span id="total-cost"></span> </td></tr>
+            </table>
+        </div>
+    </div>
+    <div class="table">
+        <div class="cell">
+            <table id="special-attacks">
+                <thead>
+                    <th> Special Attack </th> 
+                    <th> Type </th> 
+                    <th> Range </th> 
+                    <th> Offense </th> 
+                    <th> Area </th> 
+                    <th> Duration </th> 
+                    <th> Impact </th> 
+                    <th> Energy </th>
+                    <th> Horror </th>
+                    <th> Cost </th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td> <input type="text" size="20"> </td>
+                        <td>
+                            <select>
+                                <option selected="selected"> Physical </option>
+                                <option> Mental </option>
+                            </select>
+                        </td>
+                        <td>
+                            <select class="range">
+                                <option value="0" selected="selected"> Melee </option>
+                                <option value="10"> Short </option>
+                                <option value="20"> Long </option>
+                            </select>
+                        </td>
+                        <td> <input class="offense" type="text" size="3"> </td>
+                        <td> <input class="area" type="text" size="3"> </td>
+                        <td> <input class="duration" type="text" size="3"> </td>
+                        <td> <input class="impact" type="text" size="3"> </td>
+                        <td> <input class="energy" type="text" size="3"> </td>
+                        <td> <input class="horror" type="text" size="3"> </td>
+                        <td> <span class="cost"> </span> </td>
+                    </tr>
+                    <tr>
+                        <td> <input type="text" size="20"> </td>
+                        <td>
+                            <select>
+                                <option selected="selected"> Physical </option>
+                                <option> Mental </option>
+                            </select>
+                        </td>
+                        <td>
+                            <select class="range">
+                                <option value="0" selected="selected"> Melee </option>
+                                <option value="10"> Short </option>
+                                <option value="20"> Long </option>
+                            </select>
+                        </td>
+                        <td> <input class="offense" type="text" size="3"> </td>
+                        <td> <input class="area" type="text" size="3"> </td>
+                        <td> <input class="duration" type="text" size="3"> </td>
+                        <td> <input class="impact" type="text" size="3"> </td>
+                        <td> <input class="energy" type="text" size="3"> </td>
+                        <td> <input class="horror" type="text" size="3"> </td>
+                        <td> <span class="cost"> </span> </td>
+                    </tr>
+                    <tr>
+                        <td> <input type="text" size="20"> </td>
+                        <td>
+                            <select>
+                                <option selected="selected"> Physical </option>
+                                <option> Mental </option>
+                            </select>
+                        </td>
+                        <td>
+                            <select class="range">
+                                <option value="0" selected="selected"> Melee </option>
+                                <option value="10"> Short </option>
+                                <option value="20"> Long </option>
+                            </select>
+                        </td>
+                        <td> <input class="offense" type="text" size="3"> </td>
+                        <td> <input class="area" type="text" size="3"> </td>
+                        <td> <input class="duration" type="text" size="3"> </td>
+                        <td> <input class="impact" type="text" size="3"> </td>
+                        <td> <input class="energy" type="text" size="3"> </td>
+                        <td> <input class="horror" type="text" size="3"> </td>
+                        <td> <span class="cost"> </span> </td>
+                    </tr>
+                    <tr>
+                        <td> <input type="text" size="20"> </td>
+                        <td>
+                            <select>
+                                <option selected="selected"> Physical </option>
+                                <option> Mental </option>
+                            </select>
+                        </td>
+                        <td>
+                            <select class="range">
+                                <option value="0" selected="selected"> Melee </option>
+                                <option value="10"> Short </option>
+                                <option value="20"> Long </option>
+                            </select>
+                        </td>
+                        <td> <input class="offense" type="text" size="3"> </td>
+                        <td> <input class="area" type="text" size="3"> </td>
+                        <td> <input class="duration" type="text" size="3"> </td>
+                        <td> <input class="impact" type="text" size="3"> </td>
+                        <td> <input class="energy" type="text" size="3"> </td>
+                        <td> <input class="horror" type="text" size="3"> </td>
+                        <td> <span class="cost"> </span> </td>
+                    </tr>
+                    <tr>
+                        <td> <input type="text" size="20"> </td>
+                        <td>
+                            <select>
+                                <option selected="selected"> Physical </option>
+                                <option> Mental </option>
+                            </select>
+                        </td>
+                        <td>
+                            <select class="range">
+                                <option value="0" selected="selected"> Melee </option>
+                                <option value="10"> Short </option>
+                                <option value="20"> Long </option>
+                            </select>
+                        </td>
+                        <td> <input class="offense" type="text" size="3"> </td>
+                        <td> <input class="area" type="text" size="3"> </td>
+                        <td> <input class="duration" type="text" size="3"> </td>
+                        <td> <input class="impact" type="text" size="3"> </td>
+                        <td> <input class="energy" type="text" size="3"> </td>
+                        <td> <input class="horror" type="text" size="3"> </td>
+                        <td> <span class="cost"> </span> </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</form>
+</div>
+
+

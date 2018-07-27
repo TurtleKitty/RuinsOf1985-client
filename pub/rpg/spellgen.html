@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title> Ruins & Raiders </title>
+    <link rel="stylesheet" type="text/css" href="../css/ruins.css" />
+    <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+</head>
+
+<body>
+
+<div class="bordered">
+<div class="content">
+
+
+<script src="../js/spellgen.js"></script>
+
+<div class="main-section">
+<form action="#">
+    <div class="table">
+        <div class="cell">
+            <div class="name-block">
+                <h1 style="padding-bottom: 0; margin-bottom: 0; padding-top: 0; margin-top: 0;"> Ruins & Raiders </h1>
+                spell generator
+            </div>
+        </div>
+    </div>
+
+    <div class="table" style="padding-left: 1em">
+        <div class="cell">
+            <div>
+                <div> Name </div>
+                <input type="text" size="40">
+            </div>
+
+            <div>
+                <div> Description </div>
+                <textarea rows="4" cols="40"></textarea>
+            </div>
+        </div>
+    </div>
+
+    <div class="table">
+        <div class="cell">
+            <div style="margin: 1em;">
+                <input name="magic_type" type="radio" value="mage" checked="checked"> <label for="magic-type"> Mage </label>
+                <input name="magic_type" type="radio" value="mystic"> <label for="magic-type"> Mystic </label>
+            </div>
+            <table id="powers">
+                <thead>
+                    <tr>
+                        <th> Power </th>
+                        <th> Intensity </th>
+                        <th> Energy </th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+            <table>
+                <tr>
+                    <th> Area </th>
+                    <td> <input type="text" class="num" id="area" value="1" size="3"> </td>
+                    <td> <span id="area-energy"> 0 </span> </td>
+                </tr>
+                <tr>
+                    <th> Duration </th>
+                    <td> <input type="text" class="num" id="duration" value="1" size="3"> </td>
+                    <td> <span id="duration-energy"> 0 </span> </td>
+                </tr>
+                <tr>
+                    <th colspan="2"> Total Energy </th>
+                    <td> <span id="total-energy"> 0 </span> </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</form>
+</div>
+
+
+
+
+</div>
+</div>
+
+</body>
+</html>

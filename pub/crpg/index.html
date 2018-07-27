@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="UTF-8">
+      <title> Ruins of 1985 </title>
+      <link rel="stylesheet" type="text/css" href="/css/ruins.css" />
+
+      <script type="text/javascript" src="/js/state-machine.js"></script>
+      <script type="text/javascript" src="/js/pixi.min.js"></script>
+      <script type="module" src="/js/ruins.js"></script>
+
+      <script type="text/javascript">
+   
+         import * as RuinsOf1985 from "/js/ruins.js";
+
+         RuinsOf1985.run();
+
+      </script>
+   </head>
+
+   <body>
+      <div id="game-container">
+
+         <div id="game-window">
+
+            <div id="start-screen" class="screen">
+               <div>
+                  <h1> Ruins of 1985 </h1>
+               </div>
+            </div>
+
+            <div id="game-main-screen" class="screen">
+               <span id="map-view">
+               </span>
+               <span id="info-view">
+                  <div id="status-view">
+                  </div>
+                  <div id="messages-view">
+                  </div>
+               </span>
+            </div>
+
+         </div>
+
+         <div id="menu">
+
+            <div id="start-menu" class="menu">
+               <span class="menu-item">
+                  <span class="action-letter">C</span>reate Adventurer
+               </span>
+               <span class="menu-item">
+                  <span class="action-letter">F</span>orm party
+               </span>
+               <span class="menu-item">
+                  <span class="action-letter">G</span>o adventuring
+               </span>
+            </div>
+
+            <div id="game-main-menu" class="menu">
+               <span class="menu-item">
+                  <span class="action-letter">M</span>ove
+               </span>
+               <span class="menu-item">
+                  <span class="action-letter">C</span>ast
+               </span>
+               <span class="menu-item">
+                  <span class="action-letter">V</span>iew
+               </span>
+            </div>
+
+         </div>
+
+      </div>
+   </body>
+</html>

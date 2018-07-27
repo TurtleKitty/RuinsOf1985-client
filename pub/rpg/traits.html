@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title> Ruins & Raiders </title>
+    <link rel="stylesheet" type="text/css" href="../css/ruins.css" />
+    <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+</head>
+
+<body>
+
+<div class="bordered">
+<div class="content">
+
+
+<h2> Traits </h2>
+
+<p>
+Traits measure a character's natural talents.
+
+<p>
+The point cost of a trait is based on the level.
+The higher the trait, the more difficult it is to improve.
+
+<div>
+    <table class="display-table">
+        <tr><th> Level </th><th> Cost </th></tr>
+        <tr align="center"><td>  0 </td><td>  0 </td></tr>
+        <tr align="center"><td>  1 </td><td>  3 </td></tr>
+        <tr align="center"><td>  2 </td><td>  4 </td></tr>
+        <tr align="center"><td>  3 </td><td>  5 </td></tr>
+        <tr align="center"><td>  4 </td><td>  6 </td></tr>
+        <tr align="center"><td>  5 </td><td>  8 </td></tr>
+        <tr align="center"><td>  6 </td><td> 10 </td></tr>
+        <tr align="center"><td>  7 </td><td> 12 </td></tr>
+        <tr align="center"><td>  8 </td><td> 16 </td></tr>
+        <tr align="center"><td>  9 </td><td> 20 </td></tr>
+    </table>
+    <table class="display-table">
+        <tr><th> Level </th><th> Cost </th></tr>
+        <tr align="center"><td> 10 </td><td>  25 </td></tr>
+        <tr align="center"><td> 11 </td><td>  30 </td></tr>
+        <tr align="center"><td> 12 </td><td>  40 </td></tr>
+        <tr align="center"><td> 13 </td><td>  50 </td></tr>
+        <tr align="center"><td> 14 </td><td>  60 </td></tr>
+        <tr align="center"><td> 15 </td><td>  80 </td></tr>
+        <tr align="center"><td> 16 </td><td> 100 </td></tr>
+        <tr align="center"><td> 17 </td><td> 120 </td></tr>
+        <tr align="center"><td> 18 </td><td> 160 </td></tr>
+        <tr align="center"><td> 19 </td><td> 200 </td></tr>
+    </table>
+    <table class="display-table">
+        <tr><th> Level </th><th> Cost </th></tr>
+        <tr align="center"><td> 20 </td><td>  250 </td></tr>
+        <tr align="center"><td> 21 </td><td>  300 </td></tr>
+        <tr align="center"><td> 22 </td><td>  400 </td></tr>
+        <tr align="center"><td> 23 </td><td>  500 </td></tr>
+        <tr align="center"><td> 24 </td><td>  600 </td></tr>
+        <tr align="center"><td> 25 </td><td>  800 </td></tr>
+        <tr align="center"><td> 26 </td><td>  1000 </td></tr>
+        <tr align="center"><td> 27 </td><td>  1200 </td></tr>
+        <tr align="center"><td> 28 </td><td>  1600 </td></tr>
+        <tr align="center"><td> 29 </td><td>  2000 </td></tr>
+    </table>
+</div>
+
+<p>
+Thus: to give a new adventurer a Fortitude level of 6 requires 10 character points.
+To later raise that same character's Fortitude to 7 will cost 2 character points
+(12 for level 7, minus the 10 already spent to reach level 6), requiring 200
+experience points.
+
+<p>
+The formula should be apparent if one needs to go beyond 29.
+
+<div class="trait">
+<b> Brawn </b> 
+measures how much raw power one can exert.  It is used to lift
+and carry great loads or to move heavy objects.  It adds to damage
+in combat.
+
+<p>
+The table below gives the amount of weight that different Brawn levels can lift.
+
+<div>
+    <table class="display-table">
+        <tr><th> Brawn </th><th> Lift (kg) </th></tr>
+        <tr align="center"><td>  0 </td><td>   50 </td></tr>
+        <tr align="center"><td>  1 </td><td>   64 </td></tr>
+        <tr align="center"><td>  2 </td><td>   80 </td></tr>
+        <tr align="center"><td>  3 </td><td>  100 </td></tr>
+        <tr align="center"><td>  4 </td><td>  125 </td></tr>
+        <tr align="center"><td>  5 </td><td>  160 </td></tr>
+        <tr align="center"><td>  6 </td><td>  200 </td></tr>
+        <tr align="center"><td>  7 </td><td>  250 </td></tr>
+        <tr align="center"><td>  8 </td><td>  320 </td></tr>
+        <tr align="center"><td>  9 </td><td>  400 </td></tr>
+    </table>
+    <table class="display-table">
+        <tr><th> Brawn </th><th> Lift (kg) </th></tr>
+        <tr align="center"><td> 10 </td><td>   500 </td></tr>
+        <tr align="center"><td> 11 </td><td>   640 </td></tr>
+        <tr align="center"><td> 12 </td><td>   800 </td></tr>
+        <tr align="center"><td> 13 </td><td>  1000 </td></tr>
+        <tr align="center"><td> 14 </td><td>  1250 </td></tr>
+        <tr align="center"><td> 15 </td><td>  1600 </td></tr>
+        <tr align="center"><td> 16 </td><td>  2000 </td></tr>
+        <tr align="center"><td> 17 </td><td>  2500 </td></tr>
+        <tr align="center"><td> 18 </td><td>  3200 </td></tr>
+        <tr align="center"><td> 19 </td><td>  4000 </td></tr>
+    </table>
+    <table class="display-table">
+        <tr><th> Brawn </th><th> Lift (kg) </th></tr>
+        <tr align="center"><td> 20 </td><td>   5000 </td></tr>
+        <tr align="center"><td> 21 </td><td>   6400 </td></tr>
+        <tr align="center"><td> 22 </td><td>   8000 </td></tr>
+        <tr align="center"><td> 23 </td><td>  10000 </td></tr>
+        <tr align="center"><td> 24 </td><td>  12500 </td></tr>
+        <tr align="center"><td> 25 </td><td>  16000 </td></tr>
+        <tr align="center"><td> 26 </td><td>  20000 </td></tr>
+        <tr align="center"><td> 27 </td><td>  25000 </td></tr>
+        <tr align="center"><td> 28 </td><td>  32000 </td></tr>
+        <tr align="center"><td> 29 </td><td>  40000 </td></tr>
+    </table>
+</div>
+
+<p>
+The formula should be apparent if one needs to go beyond 29.
+</div>
+
+<div class="trait">
+<b> Fortitude </b>
+is health and toughness.
+It lets the character resist injury and disease.
+</div>
+
+<div class="trait">
+<b> Intellect </b>
+is a person's natural logical and analytical ability.
+Mages use it to cast their spells.
+Intellect also allows one to evade supernatural assaults.
+</div>
+
+<div class="trait">
+<b> Intuition </b>
+is a person's connection to the subtle world, the world of nature and the supernatural.
+Intuitives can hear the whispers of spirits, sense danger, and sometimes receive
+visions of the future (as a plot device for The Adversary).
+
+<p>
+Mystic ability relies on Intuition.  Intuition also allows one to evade supernatural assaults.
+</div>
+
+<div class="trait">
+<b> Perception </b>
+represents the quality of the character's natural senses, reaction time, and
+general alertness.  This important trait can prevent the adventurer - and his friends - from being surprised by stealth or guile.
+
+<p>
+Perception is used to detect subtle things that may go unheard or unseen
+and things that are obvious but may go unnoticed.  It may allow one to
+notice that someone is wearing the wrong clothes, behaving strangely, etc.
+It is used to see through lies and disguises.  It allows one to find hidden
+things.
+
+<p>
+Perception can be used to determine who goes first during a round of conflict.
+</div>
+
+<div class="trait">
+<b>Sanity</b> is mental fortitude.
+Patience and self-control are facets of sanity.
+It lessens the effect of mental assaults.
+</div>
+
+<div class="trait">
+<b> Willpower </b>
+is mental strength.
+It determines the amount of supernatural energy a Mage or Mystic can channel.
+It also helps one break out of a daze.
+</div>
+
+
+
+</div>
+</div>
+
+</body>
+</html>

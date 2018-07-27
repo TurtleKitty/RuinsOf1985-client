@@ -1,0 +1,38 @@
+
+(use template "../lib/template.vaq")
+
+(def tmpl-dir "templates/rpg")
+(def html-dir "pub/rpg")
+
+(proc slurp (file)
+   (sys.fs.from
+      (cat tmpl-dir "/" file ".tmpl")
+      (lambda (p)
+         p.read-text)))
+
+(proc pruls (name txt)
+   (sys.fs.to
+      (cat html-dir "/" name ".html")
+      (lambda (p)
+         (p.print txt))))
+
+(def filez
+   (let (fs (sys.fs.ls tmpl-dir))
+      (fs.filter
+         (lambda (x)
+            (and
+               (not (= x "layout.tmpl"))
+               (x.match ".tmpl$"))))))
+
+(def layout (slurp "layout"))
+
+(proc mangle (file)
+   (def name (send (file.split "\\.") 'head))
+   (say (cat tmpl-dir "/" file " -> " html-dir "/" name ".html"))
+   (def txt (slurp name))
+   (def compiled (template.compile layout (: content txt)))
+   (pruls name compiled))
+
+(each f filez
+   (mangle f))
+

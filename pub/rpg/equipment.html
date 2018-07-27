@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title> Ruins & Raiders </title>
+    <link rel="stylesheet" type="text/css" href="../css/ruins.css" />
+    <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+</head>
+
+<body>
+
+<div class="bordered">
+<div class="content">
+
+
+<h2> Equipment </h2>
+
+<p>
+<b> Economics </b>
+
+<p>
+In the game, money is usually in the form of precious metals such as copper, silver, and gold.
+One coin weighs around 10g (100 coins per kilogram).
+
+<p>
+The price of a good or service differs from time to time, from place to place, and from person to person.
+This price depends upon the relative value of both goods, values which derive from individual desires and relative scarcity.
+The prices in this chapter, therefore, should be taken as a reasonable estimate for a normal town under normal conditions.
+The Adversary should feel free to adjust prices to reflect the relative scarcity of goods as the players travel to different places.
+On the wild frontier, for example, gold and silver may be worthless compared to the necessities of survival.
+This will mean that the price of everything (as measured in gold or silver) will be much higher than in a safer place.
+
+<p>
+It is useful (for game purposes) to consider copper, silver, and gold as trading at fixed rates of one hundred to one:
+1 gold coin (gc) = 100 silver coins (sc) = 100 copper coins (cc).
+
+<p>
+Prices are listed in terms of copper coins (cc) - the common man's metal.
+
+<p>
+<b> Encumbrance </b>
+
+<p>
+There are limits to the amount of gear and loot one can carry.
+
+<p>
+A character's Brawn trait determines the maximum amount of weight that person can heft.
+A large haul gives penalties to movement and to any traits requiring agility, including dodge and parry.
+The penalty is based on the ratio of weight carried to maximum lift:
+
+<table>
+    <tr><th>Weight : Max Lift (%) </th><th> Penalty </th></tr>
+    <tr><td>        30%           </td><td>    -3   </td></tr>
+    <tr><td>        60%           </td><td>    -6   </td></tr>
+    <tr><td>        90%           </td><td>    -9   </td></tr>
+</table>
+
+<p>
+Encumbrance penalties stack with armor penalties.
+
+<div class="example">
+Example: Bob has a Brawn of 3.  He can lift 100kg.
+When carrying more than 30kg of gear or treasure, he has -3 to his movement and to any traits requiring agility.
+When carrying more than 60kg, he has a -6.
+When carrying more than 90kg, he has a -9.
+When holding up 100kg, he is immobile.
+</div>
+
+<p>
+For purposes of simplicity, rough estimates are better than detailed accounting.
+
+<p>
+<b> Weapons </b>
+
+<p>
+Weapons are used to slay enemies.
+
+<p>
+<b> Melee Weapons </b>
+are for hand-to-hand combat.
+They have two scores: Defense and Power.
+The wielder adds a weapon's Defense to his Parry.
+Melee weapons do Brawn + Power damage.
+
+<p>
+<b> Thrown Weapons </b>
+
+<p>
+Any item can be thrown at an opponent.
+Most do damage equal to the character's Brawn, though fragile items may do less (and break upon impact).
+Objects of excessive mass or awkward size and shape may give penalties to hit.
+Weapons designed to be thrown have no such penalty and add their power to the user's Brawn.
+Thrown weapons require one hand to use.
+
+<p>
+<b> Missile Weapons </b>
+
+<p>
+Missile weapons use leverage to launch projectiles.
+Slings, bows, and crossbows fall into this category.
+
+<p>
+The advantage of missile weapons is that they project power at long range.
+The drawback is the need for ammunition -  a missile weapon is usually limited to around two dozen shots per battle.
+It is assumed that ammunition can be recovered or recreated between battles, given sufficient time.
+
+<p>
+Missile weapons do Brawn + 9 damage.
+Adventurers are assumed to have weapons to match their Brawn.
+
+<p>
+Missile weapons require two hands regardless of size.
+
+<table>
+    <tr> <th> Name </th><th>Defense</th><th>Power</th><th>Hands</th><th>Throwable</th><th>Ranged</th></tr>
+    <tr> <td> Dagger </td> <td> 0 </td> <td> 6 </td> <td> 1 </td> <td> yes </td> <td> no </td> </tr>
+    <tr> <td> Hatchet </td> <td> 0 </td> <td> 6 </td> <td> 1 </td> <td> yes </td> <td> no </td> </tr>
+    <tr> <td> Javelin </td> <td> 0 </td> <td> 6 </td> <td> 1 </td> <td> yes </td> <td> no </td> </tr>
+    <tr> <td> Axe </td> <td> 0 </td> <td> 9 </td> <td> 1 </td> <td> no </td> <td> no </td> </tr>
+    <tr> <td> Flail </td> <td> 0 </td> <td> 9 </td> <td> 1 </td> <td> no </td> <td> no </td> </tr>
+    <tr> <td> Hammer </td> <td> 0 </td> <td> 9 </td> <td> 1 </td> <td> no </td> <td> no </td> </tr>
+    <tr> <td> Mace </td> <td> 0 </td> <td> 9 </td> <td> 1 </td> <td> no </td> <td> no </td> </tr>
+    <tr> <td> Sword </td> <td> 0 </td> <td> 9 </td> <td> 1 </td> <td> no </td> <td> no </td> </tr>
+    <tr> <td> Staff </td> <td> 3 </td> <td> 6 </td> <td> 2 </td> <td> no </td> <td> no </td> </tr>
+    <tr> <td> Spear </td> <td> 2 </td> <td> 9 </td> <td> 2 </td> <td> no </td> <td> no </td> </tr>
+    <tr> <td> Halberd </td> <td> 1 </td> <td> 12 </td> <td> 2 </td> <td> no </td> <td> no </td> </tr>
+    <tr> <td> Bardiche </td> <td> 0 </td> <td> 15 </td> <td> 2 </td> <td> no </td> <td> no </td> </tr>
+    <tr> <td> Greatsword </td> <td> 0 </td> <td> 15 </td> <td> 2 </td> <td> no </td> <td> no </td> </tr>
+    <tr> <td> Maul </td> <td> 0 </td> <td> 15 </td> <td> 2 </td> <td> no </td> <td> no </td> </tr>
+    <tr> <td> Bow </td> <td> 0 </td> <td> 9 </td> <td> 2 </td> <td> no </td> <td> yes </td> </tr>
+    <tr> <td> Crossbow </td> <td> 0 </td> <td> 9 </td> <td> 2 </td> <td> no </td> <td> yes </td> </tr>
+    <tr> <td> Sling </td> <td> 0 </td> <td> 9 </td> <td> 2 </td> <td> no </td> <td> yes </td> </tr>
+</table>
+
+<p>
+These names are only suggestions.
+Weapon names and cosmetics are not important for game purposes. 
+Players are free to call their adventurer's weapons whatever they like.
+
+<p>
+An adventurer who uses a shield in his off-hand gets +2 to Parry.
+
+<p>
+An adventurer who wields two one-handed weapons gets the damage bonus of the larger, +1 to hit, and +1 Parry.
+
+
+<p>
+<b> Armor </b>
+
+<p>
+Armor protects the wearer from physical harm in combat.
+
+<p>
+Armor can be a lifesaver, but is heavy and uncomfortable.
+The armor's Protection is added to the wearer's Fortitude for purposes of resisting damage from physical attacks.
+Armor slows a character down and makes many actions difficult (running, climbing, jumping, sneaking) or impossible (swimming).
+The penalty of the armor should be subtracted from movement, dodge, and any trait checks that require movement, agility, or quiet.
+This does not include fighting skills - armor is designed for it.
+
+<p>
+The mass of the armor determines the protection.
+The cosmetics of the armor are not important for game purposes.
+Players may call their character's armor mail, plate, chain, or boiled hide, so long as the weight and discomfort are the same.
+The list below is a general guideline.
+
+<table>
+    <tr><th> type           </th><th> protection </th><th> penalty </th><th> weight </th><th> cost   </th></tr>
+    <tr><td> leather        </td><td>    3       </td><td>  -1     </td><td>    20  </td><td>  200   </td></tr>
+    <tr><td> chain          </td><td>    6       </td><td>  -3     </td><td>    40  </td><td>  2000  </td></tr>
+    <tr><td> plate          </td><td>   10       </td><td>  -5     </td><td>    60  </td><td>  20000 </td></tr>
+</table>
+
+<p>
+<b> Food </b>
+
+<table>
+    <tr><th>quality</th><th>cost</th></tr>
+    <tr><td>peasant grub</td><td>5 per meal</td></tr>
+    <tr><td>decent meal</td><td>10 per meal</td></tr>
+    <tr><td>fine dining</td><td>50 per meal</td></tr>
+    <tr><td>drink</td><td>4 per serving</td></tr>
+</table>
+
+<p>
+<b> Clothing </b>
+
+<table>
+    <tr><th>type</th><th>cost (per change of clothes)</th></tr>
+    <tr><td>peasant garb</td><td>10</td></tr>
+    <tr><td>travelling clothes</td><td>100</td></tr>
+    <tr><td>noble attire</td><td>1000</td></tr>
+</table>
+
+<p>
+<b> Shelter </b>
+
+<table>
+    <tr><th>type</th><th>cost (per person, per night)</th></tr>
+    <tr><td>inn - common room</td><td>10</td></tr>
+    <tr><td>inn - private room</td><td>30</td></tr>
+    <tr><td>inn - high quality</td><td>200+</td></tr>
+</table>
+
+
+
+</div>
+</div>
+
+</body>
+</html>
