@@ -1,0 +1,15 @@
+
+(export compile)
+
+(proc compile (tmpl params)
+   (log (list tmpl params))
+   (def vs (tmpl.capture #(text {{{\s*(.*?)\s*}}})))
+   (def vars (map (resend 'head) vs))
+   (proc mk-regex (v)
+      (cat "{{{\\s*" v "\\s*}}}"))
+   (loop go (v vars.head vs vars.tail txt tmpl)
+      (def nutxt (txt.replace (mk-regex v) (send (params v.to-symbol) 'to-text)))
+      (if vs
+         (go vs.head vs.tail nutxt)
+         nutxt)))
+

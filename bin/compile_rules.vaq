@@ -1,28 +1,29 @@
 
-(use template "../lib/template.vaq")
+(use template "./template.vaq")
 
 (def tmpl-dir "templates/rpg")
 (def html-dir "pub/rpg")
 
 (proc slurp (file)
-   (sys.fs.from
+   (sys.fs.read-from
       (cat tmpl-dir "/" file ".tmpl")
-      (lambda (p)
-         p.read-text)))
+      with: (lambda (p)
+               p.read-text)))
 
 (proc pruls (name txt)
-   (sys.fs.to
+   (sys.fs.write-to
       (cat html-dir "/" name ".html")
-      (lambda (p)
-         (p.print txt))))
+      with: (lambda (p)
+               (p.print txt))))
 
 (def filez
    (let (fs (sys.fs.ls tmpl-dir))
-      (fs.filter
+      (filter
          (lambda (x)
             (and
                (not (= x "layout.tmpl"))
-               (x.match ".tmpl$"))))))
+               (x.match ".tmpl$")))
+         fs)))
 
 (def layout (slurp "layout"))
 
