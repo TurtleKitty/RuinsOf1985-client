@@ -6,13 +6,12 @@ This chapter describes the rules for creating spells.
 For those who wish to skip this section, there are example spells in <b>Chapter 4.</b>
 Rules for using spells are in <b>Chapter 3</b>.
 
-
 <p>
 <b> Skill </b>
 
 <p>
-Casting a spell requires a trait roll: Intellect for a Mage spell, Intuition for a Mystic spell.
-The character rolls this trait to determine if a spell succeeds.
+Casting a spell requires an Intellect roll.
+The Mage or Sorcerer rolls this trait to determine if a spell succeeds.
 
 <p>
 <b> Energy </b>
@@ -21,18 +20,23 @@ The character rolls this trait to determine if a spell succeeds.
 Every spell has an energy level based on its base cost, intensity, area, and duration.
 
 <p>
-<b> Intensity </b> <br>
+<b> Intensity </b>
+
+<p>
 The raw force of a spell.  For attacks, this translates into damage.
 Each level of intensity adds one to the energy level to a spell (minimum one).
 
 <p>
-<b> Area </b> <br>
+<b> Area </b>
+
+<p>
 By default, spells are directed at a single individual or space.
 A caster may choose more targets: adding 3 to the energy level of a spell
 doubles the area.  Targets need not be adjacent.
 
 <p>
-<b> Duration </b> <br>
+<b> Duration </b>
+<p>
 By default, spells are fleeting - they are thrown, defended against, and
 resisted in one round.  Spells may last longer: adding 3 to the energy
 level of a spell doubles the duration.
@@ -104,24 +108,26 @@ Fun facts:
 	<li> 5256000 rounds in 1 year </li>
 </ul>
 
-<p>
-Spells are composed of one or more powers from the Mage or Mystic side.
-Each power component of a spell has its own intensity, but all share
-the same area and duration.
 
+<p>
+<b> Powers </b>
+
+<p>
+Spells are composed of one or more powers from the Mage or Sorcerer side.
+Each power component of a spell has its own intensity, but all share the same area and duration.
 
 <p>
 <b> Mage Powers </b>
 
 <table>
-    <tr><th>Name</th><th>Base Energy</th></tr>
-    <tr><td>Alter</td><td> 0 </td></tr>
-    <tr><td>Barrier</td><td> 0 </td></tr>
-    <tr><td>Disorient</td><td> 5 </td></tr>
-    <tr><td>Energy Blast</td><td> 5 </td></tr>
-    <tr><td>Impact Attack</td><td> 0 </td></tr>
-    <tr><td>Telekinesis</td><td> 10 </td></tr>
-    <tr><td>Portal</td><td> 10 </td></tr>
+   <tr><th> Name          </th><th> Base Energy </th></tr>
+   <tr><td> Alter         </td><td>           0 </td></tr>
+   <tr><td> Barrier       </td><td>           5 </td></tr>
+   <tr><td> Disorient     </td><td>           5 </td></tr>
+   <tr><td> Energy Blast  </td><td>           5 </td></tr>
+   <tr><td> Impact Attack </td><td>           0 </td></tr>
+   <tr><td> Telekinesis   </td><td>          10 </td></tr>
+   <tr><td> Portal        </td><td>          10 </td></tr>
 </table>
 
 
@@ -137,8 +143,7 @@ Each +3 doubles the effect.
 <div class="trait">
 <b> Barrier </b>
 allows a Mage to place a wall of pure force.  The intensity of the barrier is subtracted from any physical attack passing through it.
-Anyone who wishes to push through the barrier much make a Brawn roll greater than the barrier's intensity, then spend a number of
-movement points equal to the intensity.
+Anyone who wishes to push through the barrier must make a Brawn roll greater than the barrier's intensity.
 </div>
 
 <div class="trait">
@@ -229,42 +234,57 @@ to a random world that the caster knows nothing about is suicidal.
 </div>
 
 <p>
-<b> Mystic Powers </b>
+<b> Sorcerer Powers </b>
 
 <table>
-    <tr><th>Name</th><th>Base Energy</th></tr>
-    <tr><td>Daze</td><td> 10 </td></tr>
-    <tr><td>Horrify</td><td> 5 </td></tr>
-    <tr><td>Obscure</td><td> 10 </td></tr>
-    <tr><td>Torment</td><td> 5 </td></tr>
+   <tr><th> Name      </th><th> Base Energy </th></tr>
+   <tr><td> Daze      </td><td>          10 </td></tr>
+   <tr><td> Delude    </td><td>          10 </td></tr>
+   <tr><td> Horrify   </td><td>           5 </td></tr>
+   <tr><td> Telepathy </td><td>           0 </td></tr>
+   <tr><td> Torment   </td><td>           5 </td></tr>
 </table>
-
 
 <div class="trait">
 <b> Daze </b>
-allows a Mystic to render an enemy senseless and defenseless.
+allows a Sorcerer to render an enemy senseless and defenseless.
+The victim loses consciousness and falls prone.
 The target must make a Willpower check greater than 7 + the intensity
 of the spell in order to escape before the duration expires.
+An attempt can be made once per action.
+</div>
+
+<div class="trait">
+<b> Delude </b>
+allows a Sorcerer to project illusions into a subject's mind.
+The subject remains awake and active, but his sensory experience is
+dictated by the sorcerer. Any enemy the sorcerer makes unseen can
+attack the deluded with impunity.
+
+The target must make a Willpower check greater than 7 + the intensity
+of the spell in order to escape before the duration expires.
+An attempt can be made once per action.
 </div>
 
 <div class="trait">
 <b> Horrify </b>
-lets the Mystic attack a foe's mind.  The intensity of
+lets the Sorcerer attack a foe's mind.  The intensity of
 the spell is compared to the target's sanity to determine the
 number of shocks inflicted.
 </div>
 
 <div class="trait">
-<b> Obscure </b>
-lets the Mystic summon a cloud of fog, or insects, or
-something similar to obscure vision.
+<b> Telepathy </b>
+lets the Sorcerer send thoughts and images into another's mind.
+Each +3 energy can double the number of recipients.
 </div>
 
 <div class="trait">
 <b> Torment </b>
-allows the Mystic to attack a foe's body with a swarm of stinging
-insects, painful boils, uncontrollable itching, fever and chills, or something similar.
-The intensity of the spell is compared to the target's Fortitude to
+allows the Sorcerer to cause a foe's mind to make the body attack itself.
+The victim may suffer uncontrollable itching, fever and chills, muscle spasms,
+or something similar.
+The intensity of the spell is compared to the target's Sanity to
 determine the number of wounds inflicted.
 </div>
 
