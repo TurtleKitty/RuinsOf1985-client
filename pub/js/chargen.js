@@ -122,7 +122,7 @@ $(document).ready(
         var ahtml = mktable(
             ['Armor', 'Movement', 'Dodge', 'Protection'],
             [
-                [ 'None', getval('athlete-level') + 5, getval('athlete-level') + 7, getval('fortitude-level')],
+                [ 'None', getval('athlete-level') + 10, getval('athlete-level') + 7, getval('fortitude-level')],
                 [ armor_select, '-', '-', '-' ]
             ]
         );
@@ -207,8 +207,8 @@ $(document).ready(
                             fort    = getval('fortitude-level')
                         ;
 
-                        move  = 5 + athlete - thisOne.penalty;
-                        dodge = 7 + athlete - thisOne.penalty;
+                        move  = 10 + athlete - thisOne.penalty;
+                        dodge =  7 + athlete - thisOne.penalty;
                         prot  = fort + thisOne.protection;
                     }
 
