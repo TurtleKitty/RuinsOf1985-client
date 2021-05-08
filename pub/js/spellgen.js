@@ -5,17 +5,18 @@ $(document).ready(
             mage: [
                 { name: "Alter", base_energy: 0 },
                 { name: "Barrier", base_energy: 0 },
-                { name: "Disorient", base_energy: 0 },
+                { name: "Disorient", base_energy: 5 },
                 { name: "Energy Blast", base_energy: 5 },
                 { name: "Impact Attack", base_energy: 0 },
                 { name: "Telekinesis", base_energy: 10 },
                 { name: "Portal", base_energy: 10 }
             ],
 
-            mystic: [
+            sorcerer: [
                 { name: "Daze", base_energy: 10 },
+                { name: "Delude", base_energy: 10 },
                 { name: "Horrify", base_energy: 5 },
-                { name: "Obscure", base_energy: 10 },
+                { name: "Telepathy", base_energy: 0 },
                 { name: "Torment", base_energy: 5 }
             ]
         };
@@ -29,9 +30,9 @@ $(document).ready(
             ).join("\n") + '</select>'
         ;
 
-        var mystic_select = '<select class="powers">' +
+        var sorcerer_select = '<select class="powers">' +
             '<option value="-"> - </option>' +
-            powers.mystic.map(
+            powers.sorcerer.map(
                 function (p, i) {
                     return '<option value="' + i + '">' + p.name + '</option>';
                 }
@@ -50,7 +51,7 @@ $(document).ready(
 
         function switch_magic_type () {
             var to = $('input[name="magic_type"]:checked').val(),
-                sel = (to === 'mage') ? mage_select : mystic_select,
+                sel = (to === 'mage') ? mage_select : sorcerer_select,
                 row = mkrow([ sel, '<input class="intensity" size="3">', '<span class="energy-cost"> - </span>' ]),
                 nu_tbody = [ row, row, row, row, row ].join("\n")
             ;

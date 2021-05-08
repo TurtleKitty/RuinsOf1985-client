@@ -3,7 +3,7 @@ $(document).ready(
     function () {
         var traits = [ "brawn", "fortitude", "intellect", "intuition", "perception", "sanity", "willpower" ],
             skills = [ "archer", "artisan", "athlete", "healer", "ranger", "rogue", "scholar", "sneak", "warrior" ],
-            gifts  = { mage: 25, mystic: 25, starvision: 10, immunity: 10, longevity: 10 },
+            gifts  = { longevity: 10, mage: 25, mystic: 25, sorcerer: 25, starvision: 10 },
             arms = [
                 { name: "Unarmed", offense: 0, damage: 0, parry: 0, ranged: false },
                 { name: "Sword & Shield", offense: 0, damage: 9, parry: 2, ranged: false },
