@@ -1,3 +1,4 @@
+#!/usr/local/bin/vaquero run
 
 (use template "./template.vaq")
 
@@ -17,13 +18,15 @@
                (p.print txt))))
 
 (def filez
-   (let (fs (sys.fs.ls tmpl-dir))
-      (filter
-         (lambda (x)
-            (and
-               (not (= x "layout.tmpl"))
-               (x.match ".tmpl$")))
-         fs)))
+   (if sys.rest
+      sys.rest
+      (let (fs (sys.fs.ls tmpl-dir))
+         (filter
+            (lambda (x)
+               (and
+                  (not (= x "layout.tmpl"))
+                  (x.match ".tmpl$")))
+            fs))))
 
 (def layout (slurp "layout"))
 
