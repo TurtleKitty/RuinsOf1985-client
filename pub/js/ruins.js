@@ -1,5 +1,5 @@
 
-import * as Input from "/js/input_handler.js";
+import * as Input from "./input_handler.js";
 
 console.log(Input.keymap);
 
