@@ -5,22 +5,33 @@ $(document).ready(
             skills = [ "archer", "artisan", "athlete", "healer", "ranger", "rogue", "scholar", "sneak", "warrior" ],
             gifts  = { longevity: 10, mage: 25, mystic: 25, sorcerer: 25, starvision: 10 },
             arms = [
-                { name: "Unarmed", offense: 0, damage: 0, parry: 0, ranged: false },
-                { name: "Sword & Shield", offense: 0, damage: 9, parry: 2, ranged: false },
-                { name: "Sword & Dagger", offense: 1, damage: 9, parry: 1, ranged: false },
-                { name: "Staff", offense: 0, damage: 6, parry: 3, ranged: false },
-                { name: "Spear", offense: 0, damage: 9, parry: 2, ranged: false },
-                { name: "Halberd", offense: 0, damage: 12, parry: 1, ranged: false },
-                { name: "Maul", offense: 0, damage: 15, parry: 0, ranged: false },
-                { name: "Bow", offense: 0, damage: 9, parry: 0, ranged: true }
+                { name: "Unarmed",    type: "melee",     defense: 0, power:  0, hands: 2, throwable: false },
+                { name: "Dagger",     type: "melee",     defense: 0, power:  6, hands: 1, throwable: true  },
+                { name: "Hatchet",    type: "melee",     defense: 0, power:  6, hands: 1, throwable: true  },
+                { name: "Javelin",    type: "melee",     defense: 0, power:  6, hands: 1, throwable: true  },
+                { name: "Shield",     type: "defensive", defense: 2, power:  0, hands: 1, throwable: false },
+                { name: "Axe",        type: "melee",     defense: 0, power:  9, hands: 1, throwable: false },
+                { name: "Flail",      type: "melee",     defense: 0, power:  9, hands: 1, throwable: false },
+                { name: "Hammer",     type: "melee",     defense: 0, power:  9, hands: 1, throwable: false },
+                { name: "Mace",       type: "melee",     defense: 0, power:  9, hands: 1, throwable: false },
+                { name: "Sword",      type: "melee",     defense: 0, power:  9, hands: 1, throwable: false },
+                { name: "Staff",      type: "melee",     defense: 3, power:  6, hands: 2, throwable: false },
+                { name: "Spear",      type: "melee",     defense: 2, power:  9, hands: 2, throwable: false },
+                { name: "Halbred",    type: "melee",     defense: 1, power: 12, hands: 2, throwable: false },
+                { name: "Bardiche",   type: "melee",     defense: 0, power: 15, hands: 2, throwable: false },
+                { name: "Greatsword", type: "melee",     defense: 0, power: 15, hands: 2, throwable: false },
+                { name: "Maul",       type: "melee",     defense: 0, power: 15, hands: 2, throwable: false },
+                { name: "Bow",        type: "missile",   defense: 0, power:  9, hands: 2, throwable: false },
+                { name: "Crossbow",   type: "missile",   defense: 0, power:  9, hands: 2, throwable: false },
+                { name: "Sling",      type: "missile",   defense: 0, power:  9, hands: 2, throwable: false },
             ],
             armor = [
-                { name: "None", protection: 0, penalty: 0 },
-                { name: "Leather", protection: 3, penalty: 1 },
-                { name: "Chain", protection: 6, penalty: 3 },
-                { name: "Plate", protection: 10, penalty: 5 }
+                { name: "None",    protection:  0, penalty: 0 },
+                { name: "Leather", protection:  3, penalty: 1 },
+                { name: "Chain",   protection:  6, penalty: 3 },
+                { name: "Plate",   protection: 10, penalty: 5 }
             ],
-            tBase = [ 2.5, 3, 4, 5, 6, 8, 10, 12, 16, 20 ]
+            traitBase = [ 2.5, 3, 4, 5, 6, 8, 10, 12, 16, 20 ]
         ;
 
         function traitCost (level) {
@@ -31,7 +42,7 @@ $(document).ready(
             var index = level % 10;
             var exp   = Math.floor( level / 10 );
 
-            return( Math.pow(10,exp) * tBase[index] );
+            return( Math.pow(10,exp) * traitBase[index] );
         }
 
         function tag (t, contents) {
@@ -108,14 +119,13 @@ $(document).ready(
         }
 
         var whtml = mktable(
-            ['Weapon', 'Offense', 'Damage', 'Range', 'Parry'],
+            ['Weapon', 'Type', 'Defense', 'Power', 'Hands', 'Throwable'],
             [
-                [ 'Unarmed', getval('warrior-level'), getval('brawn-level'), 'melee', getval('warrior-level') + 7 ],
-                [ arm_select, '-', '-', '-', '-' ],
-                [ arm_select, '-', '-', '-', '-' ],
-                [ arm_select, '-', '-', '-', '-' ],
-                [ arm_select, '-', '-', '-', '-' ],
-                [ arm_select, '-', '-', '-', '-' ]
+                [ arm_select, '-', '-', '-', '-', '-' ],
+                [ arm_select, '-', '-', '-', '-', '-' ],
+                [ arm_select, '-', '-', '-', '-', '-' ],
+                [ arm_select, '-', '-', '-', '-', '-' ],
+                [ arm_select, '-', '-', '-', '-', '-' ]
             ]
         );
 
@@ -135,6 +145,7 @@ $(document).ready(
 
         function calculon () {
             var tcost = 0, scost = 0, gcost = 0;
+            var weapons = [];
 
             traits.forEach(
                 function (t) {
@@ -168,28 +179,20 @@ $(document).ready(
 
             $('#weapons > tr').each(
                 function () {
-                    var w = $(this).find('.gear-select').val() || 0,
-                        off = '-',
-                        dmg = '-',
-                        range = '-',
-                        parry = '-'
-                    ;
+                    var w = $(this).find('.gear-select').val() || 0;
 
-                    if (w !== '-') {
-                        var weapon = arms[parseInt(w)],
-                            skill  = weapon.ranged ? 'archer' : 'warrior'
-                        ;
-
-                        off = getval(skill + '-level') + weapon.offense;
-                        dmg = getval('brawn-level') + weapon.damage;
-                        range = weapon.ranged ? 'missile' : 'melee';
-                        parry = 7 + getval('warrior-level') + weapon.parry;
+                    if (w == '-') {
+                       return;
                     }
 
-                    $(this).find('td').eq(1).text( off );
-                    $(this).find('td').eq(2).text( dmg );
-                    $(this).find('td').eq(3).text( range );
-                    $(this).find('td').eq(4).text( parry );
+                    var weapon = arms[parseInt(w)];
+                    weapons.push(weapon); // for later calculations
+
+                    $(this).find('td').eq(1).text( weapon.type );
+                    $(this).find('td').eq(2).text( weapon.defense );
+                    $(this).find('td').eq(3).text( weapon.power );
+                    $(this).find('td').eq(4).text( weapon.hands );
+                    $(this).find('td').eq(5).text( weapon.throwable );
                 }
             );
 
@@ -219,11 +222,58 @@ $(document).ready(
                 }
             );
 
+            var armaments = [];
+
+            weapons.forEach(
+               function (weapon, i) {
+                  var skill   = weapon.type == 'missile' ? 'archer' : 'warrior';
+                  var level   = getval(skill + '-level');
+                  var brawn   = getval('brawn-level');
+                  var parry   = 7 + getval('warrior-level');
+
+                  var offense = level;
+                  var defense = parry + weapon.defense;
+                  var damage  = brawn + weapon.power;
+
+                  armaments.push([ weapon.name, offense, defense, damage ]);
+
+                  if (weapon.hands == 2 || weapon.type == 'defensive') {
+                     return;
+                  }
+
+                  weapons.slice(i + 1).forEach(
+                     function (w2) {
+                        if (w2.hands == 2) {
+                           return;
+                        }
+
+                        var andName = weapon.name + ' &amp; ' + w2.name;
+
+                        if (w2.type == 'defensive') {
+                           armaments.push([andName, offense, defense + 2, weapon.power]);
+                           return;
+                        }
+
+                        armaments.push([andName, offense + 1, defense + 1, Math.max(weapon.power, w2.power)]);
+                     }
+                  );
+               }
+            );
+
+            var cvhtml = mktable(
+               ['Armaments', 'Offense', 'Parry', 'Damage'],
+               armaments
+            );
+
+            $('#combat-values').html(cvhtml);
+
             $('#trait-cost').text(tcost);
             $('#skill-cost').text(scost);
             $('#gift-cost').text(gcost);
             $('#total-cost').text(tcost + scost + gcost + getval('fortune'));
         }
+
+        // set up events
 
         traits.forEach(
             function (t) {
