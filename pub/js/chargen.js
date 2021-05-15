@@ -254,7 +254,7 @@ $(document).ready(
                            return;
                         }
 
-                        armaments.push([andName, offense + 1, defense + 1, Math.max(weapon.power, w2.power)]);
+                        armaments.push([andName, offense + 1, defense + 1, brawn + Math.max(weapon.power, w2.power)]);
                      }
                   );
                }
