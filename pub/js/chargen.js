@@ -250,7 +250,7 @@ $(document).ready(
                         var andName = weapon.name + ' &amp; ' + w2.name;
 
                         if (w2.type == 'defensive') {
-                           armaments.push([andName, offense, defense + 2, weapon.power]);
+                           armaments.push([andName, offense, defense + 2, damage]);
                            return;
                         }
 
