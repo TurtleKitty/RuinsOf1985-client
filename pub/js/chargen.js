@@ -146,20 +146,27 @@ $(document).ready(
         function calculon () {
             var tcost = 0, scost = 0, gcost = 0;
             var weapons = [];
+            var adventurer = [
+               ['about', $('#adventurer-name').val(), $('#adventurer-desc').val()]
+            ];
 
             traits.forEach(
                 function (t) {
-                    var cost = traitCost( $('#' + t + '-level').val() );
+                    const rank = parseInt($('#' + t + '-level').val());
+                    const cost = traitCost(rank);
                     $('#' + t + '-cost').text( cost );
                     tcost += cost;
+                    adventurer.push([t, rank, cost]);
                 }
             );
 
             skills.forEach(
                 function (t) {
-                    var cost = traitCost( $('#' + t + '-level').val() );
+                    const rank = parseInt($('#' + t + '-level').val()) || 0;
+                    const cost = traitCost(rank);
                     $('#' + t + '-cost').text( cost );
                     scost += cost;
+                    adventurer.push([t, rank, cost]);
                 }
             );
 
@@ -168,7 +175,8 @@ $(document).ready(
                     var cost = 0;
 
                     if ( $('#' + g).prop('checked')) {
-                        var cost = gifts[g];
+                        cost = gifts[g];
+                        adventurer.push([g, cost]);
                     }
 
                     gcost += cost;
@@ -196,6 +204,8 @@ $(document).ready(
                 }
             );
 
+            adventurer.push(['weapons'].concat(weapons.map(w => w.name).filter(w => w != 'Unarmed')));
+
             $('#armor > tr').each(
                 function () {
                     var a = $(this).find('.gear-select').val() || 0,
@@ -213,8 +223,11 @@ $(document).ready(
                         move  = 10 + athlete - thisOne.penalty;
                         dodge =  7 + athlete - thisOne.penalty;
                         prot  = fort + thisOne.protection;
-                    }
 
+                        if (thisOne.name !== 'None') {
+                           adventurer.push(['armor', thisOne.name, move, dodge, prot]);
+                        }
+                    }
 
                     $(this).find('td').eq(1).text( move );
                     $(this).find('td').eq(2).text( dodge );
@@ -260,17 +273,26 @@ $(document).ready(
                }
             );
 
-            var cvhtml = mktable(
+            adventurer.push(['armaments'].concat(armaments));
+
+            const fortune = getval('fortune');
+            const total_cost = tcost + scost + gcost + fortune;
+
+            adventurer.push(['fortune', fortune]);
+            adventurer.push(['costs', tcost, scost, gcost, total_cost]);
+
+            const cvhtml = mktable(
                ['Armaments', 'Offense', 'Parry', 'Damage'],
                armaments
             );
 
             $('#combat-values').html(cvhtml);
-
             $('#trait-cost').text(tcost);
             $('#skill-cost').text(scost);
             $('#gift-cost').text(gcost);
-            $('#total-cost').text(tcost + scost + gcost + getval('fortune'));
+            $('#total-cost').text(tcost + scost + gcost + fortune);
+
+            console.log(JSON.stringify(adventurer));
         }
 
         // set up events
