@@ -170,13 +170,15 @@ $(document).ready(
                 }
             );
 
+            let giftList = ["gifts"];
+
             Object.keys(gifts).forEach(
                 function (g) {
                     var cost = 0;
 
                     if ( $('#' + g).prop('checked')) {
                         cost = gifts[g];
-                        adventurer.push([g, cost]);
+                        giftList.push([g, cost]);
                     }
 
                     gcost += cost;
@@ -184,6 +186,8 @@ $(document).ready(
                     $('#' + g + '-cost').text(cost);
                 }
             );
+
+            adventurer.push(giftList);
 
             $('#weapons > tr').each(
                 function () {

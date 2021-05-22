@@ -88,6 +88,14 @@ div.content {
    overflow: auto;
 }
 
+div.heading {
+   padding-left: 1em;
+}
+
+div.logo {
+   padding-left: 9em;
+}
+
 div.main-section {
    margin-top: 1em;
    margin-bottom: 1em;

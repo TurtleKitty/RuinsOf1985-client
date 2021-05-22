@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title> Ruins &amp; Raiders </title>
+
+      <link rel="stylesheet" type="text/css" href="../../css/ruins.css">
+
+      <style>
+
+         body {
+            color: black;
+            background-color: white;
+         }
+
+         div.char-sheet {
+            color: black;
+            background-color: white;
+            border: solid thin black;
+         }
+
+      </style>
+   </head>
+
+   <body>
+      <div class="char-sheet">
+         <div class="table">
+            <div class="cell">
+               <div class="heading">
+                  <div>
+                     <div> <h2> {{{ adventurer-name }}} </h2> </div>
+                     <div> {{{ adventurer-desc }}} </div>
+                  </div>
+               </div>
+            </div>
+            <div class="cell">
+               <div class="logo">
+                  <h1> Ruins &amp; Raiders </h1>
+               </div>
+            </div>
+         </div>
+
+         <div class="table">
+            <div class="cell">
+               <table id="traits">
+                  <tr><th>Trait      </th><th> Level                    </th><th> Cost                    </th></tr>
+                  <tr><td>Brawn      </td><td> {{{ brawn-level }}}      </td><td> {{{ brawn-cost }}}      </td></tr>
+                  <tr><td>Fortitude  </td><td> {{{ fortitude-level }}}  </td><td> {{{ fortitude-cost }}}  </td></tr>
+                  <tr><td>Intellect  </td><td> {{{ intellect-level }}}  </td><td> {{{ intellect-cost }}}  </td></tr>
+                  <tr><td>Intuition  </td><td> {{{ intuition-level }}}  </td><td> {{{ intuition-cost }}}  </td></tr>
+                  <tr><td>Perception </td><td> {{{ perception-level }}} </td><td> {{{ perception-cost }}} </td></tr>
+                  <tr><td>Sanity     </td><td> {{{ sanity-level }}}     </td><td> {{{ sanity-cost }}}     </td></tr>
+                  <tr><td>Willpower  </td><td> {{{ willpower-level }}}  </td><td> {{{ willpower-cost }}}  </td></tr>
+               </table>
+            </div>
+            <div class="cell">
+               <table id="gifts">
+                  <tr><th>Gift</th><th>Cost</th></tr>
+                  {{{ gifts }}}
+               </table>
+            </div>
+            <div class="cell">
+               <table id="items">
+                  <tr><th> Item </th></tr>
+                  {{{ items }}}
+               </table>
+            </div>
+            <div class="cell">
+               <table>
+                  <tbody>
+                     <tr><th> Fortune        </th> <td> {{{ fortune }}}     </td> </tr>
+                     <tr><th> Traits         </th> <td> {{{ trait-cost }}}  </td></tr>
+                     <tr><th> Skills         </th> <td> {{{ skill-cost }}}  </td></tr>
+                     <tr><th> Gifts          </th> <td> {{{ gift-cost }}}   </td></tr>
+                     <tr><th> <b> TOTAL </b> </th> <td> {{{ total-cost }}}  </td></tr>
+                  </tbody>
+               </table>
+            </div>
+         </div>
+         <div class="table">
+            <div class="cell">
+               <table id="skills">
+                  <tr><th>Skill   </th> <th>Level                  </th><th> Cost                 </th></tr>
+                  <tr><td>Archer  </td> <td> {{{ archer-level }}}  </td><td> {{{ archer-cost }}}  </td></tr>
+                  <tr><td>Artisan </td> <td> {{{ artisan-level }}} </td><td> {{{ artisan-cost }}} </td></tr>
+                  <tr><td>Athlete </td> <td> {{{ athlete-level }}} </td><td> {{{ athlete-cost }}} </td></tr>
+                  <tr><td>Healer  </td> <td> {{{ healer-level }}}  </td><td> {{{ healer-cost }}}  </td></tr>
+                  <tr><td>Ranger  </td> <td> {{{ ranger-level }}}  </td><td> {{{ ranger-cost }}}  </td></tr>
+                  <tr><td>Rogue   </td> <td> {{{ rogue-level }}}   </td><td> {{{ rogue-cost }}}   </td></tr>
+                  <tr><td>Scholar </td> <td> {{{ scholar-level }}} </td><td> {{{ scholar-cost }}} </td></tr>
+                  <tr><td>Sneak   </td> <td> {{{ sneak-level }}}   </td><td> {{{ sneak-cost }}}   </td></tr>
+                  <tr><td>Warrior </td> <td> {{{ warrior-level }}} </td><td> {{{ warrior-cost }}} </td></tr>
+               </table>
+            </div>
+
+            <div class="cell">
+               <table id="combat-values">
+                  <tr><th>Armaments</th><th>Offense</th><th>Parry</th><th>Damage</th></tr>
+                  {{{ combat-value-rows }}}
+               </table>
+               <table id="armor">
+                  <tr><th> Armor              </th><th> Movement                  </th><th> Dodge                  </th><th> Protection                  </th></tr>
+                  <tr><td> None               </td><td> {{{ no-armor-movement }}} </td><td> {{{ no-armor-dodge }}} </td><td> {{{ no-armor-protection }}} </td></tr>
+                  <tr><td> {{{ armor-name }}} </td><td> {{{ armor-movement }}}    </td><td> {{{ armor-dodge }}}    </td><td> {{{ armor-protection }}}    </td></tr>
+               </table>
+            </div>
+         </div>
+      </div>
+   </body>
+</html>
