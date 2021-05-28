@@ -1,0 +1,122 @@
+#!/usr/local/bin/vaquero run
+
+(def arg sys.rest.head)
+
+(when (not arg)
+   (say "Usage: compile_spells.vaq (mage|sorcerer)")
+   (sys.proc.exit))
+
+(def which arg.to-symbol)
+
+(def mage-powers '(alter barrier disorient energy-blast impact-attack portal telekinesis))
+(def sorcerer-powers '(daze delude horrify telepathy torment))
+
+(def names (:
+   alter          "Alter"
+   barrier        "Barrier"
+   disorient      "Disorient"
+   energy-blast   "Energy Blast"
+   impact-attack  "Impact Attack"
+   portal         "Portal"
+   telekinesis    "Telekinesis"
+   daze           "Daze"
+   delude         "Delude"
+   horrify        "Horrify"
+   telepathy      "Telepathy"
+   torment        "Torment"))
+
+(def costs (:
+   alter          3
+   barrier        3
+   disorient      6
+   energy-blast   6
+   impact-attack  3
+   portal        10
+   telekinesis   10
+   daze          10
+   delude        10
+   horrify        6
+   telepathy      3
+   torment        6))
+
+(def mage-spells '(
+   ("Cold Snap" "Lowers the ambient temperature" (alter))
+   ("Firewall" "A wall of force and fire that damages all who touch it" (barrier energy-blast))
+   ("Forcewall" "A transparent wall of pure force" (barrier))
+   ("Gateway" "Opens a shimmering portal to somewhere else" (portal))
+   ("Gate of Confusion"  "Opens a portal that disorients anyone who goes through it" (disorient portal))
+   ("Hold Fast" "Uses telekinesis to pin foes down" (telekinesis))
+   ("Magic Bullet" "A small iron sphere flies from the caster's hand, smites a target, and returns to the caster" (impact-attack))
+   ("Meteor" "Turns a rock into a flaming projectile" (energy-blast impact-attack))
+   ("Shockwall" "A barrier of lightning that damages and disorients those who come in contact" (barrier disorient energy-blast))
+   ("Spark" "Lightning flies from the mage's fingers" (energy-blast))
+   ("Vortex" "Creates a barrier of rotating wind filled with sharp rocks" (barrier impact-attack))
+   ("Warm Glow" "A small glowing sphere warms the room and lights the way" (alter))
+   ("White Noise" "The mage hits the subject with a blast of static" (disorient))
+))
+
+(def sorcerer-spells '(
+   ("Gripping Fear" "Causes fear so intense it does physical damage" (horrify torment))
+   ("Hell Trip" "Traps the victim on an infinite plain persued by legions of horrors" (delude horrify))
+   ("Illusion" "Traps the subject in a dream world" (delude))
+   ("Message" "Sends thoughts and images to the minds of others" (telepathy))
+   ("Nightmare" "The subject falls unconscious and has a terrible dream" (daze horrify))
+   ("Phantom Attacker" "Makes the subject believe they are being pounded on" (delude torment))
+   ("Seizure" "Gives the subject a seizure" (daze torment))
+   ("Sleep" "Time for a nap" (daze))
+   ("Terror Vision" "Attacks the subject's sanity with its worst fears" (horrify))
+   ("Torturous Phantasm" "The subject experiences being subjected to a torture chamber" (delude horrify torment))
+   ("Writhing Pain" "The subject's mind attacks its own body" (torment))
+))
+
+(def intro-message #(text
+Each spell costs a minimum amount of energy.
+This base energy creates a spell with an intensity of 0, an area of 1 space, and a duration of 1 round.
+The caster may add energy to the spell to increase any of the three, as described in the <b>Spells</b> chapter.))
+
+(proc format-spell (spell)
+   (def name spell.head)
+   (def desc spell.1)
+   (def powers spell.2)
+   (proc power-name (p)
+      (names p))
+   (def power-html (cat.apply (map power-name powers) opt: (: with "<br>")))
+   (def base-energy (fold (L (power total) (+ total (costs power))) 0 powers))
+   #(template
+      <tr>
+         <td> {{ name }} </td> 
+         <td> {{ desc }} </td>
+         <td> {{ power-html }} </td>
+         <td> {{ base-energy }} </td>
+      </tr>
+))
+
+(proc format-spells (kind spells)
+   (def spells-html
+      (cat.apply
+         (map format-spell spells)
+         opt: (: with "\n\n")))
+   (def template
+      #(template
+<div>
+   <h1> {{ kind }} Spells </h1>
+</div>
+
+<div>
+   {{ intro-message }}
+</div>
+
+<div>
+   <table>
+      <tr> <th> Name </th> <th> Description </th> <th> Powers </th> <th> Base Energy </th> </tr>
+{{ spells-html }}
+   </table>
+</div>
+   )))
+
+(print
+   (case which
+      (mage)     (format-spells "Mage" mage-spells)
+      (sorcerer) (format-spells "Sorcerer" sorcerer-spells)
+      else (fail 'unknown)))
+
