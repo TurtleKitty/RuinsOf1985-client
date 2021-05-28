@@ -1,0 +1,95 @@
+#!/usr/local/bin/vaquero run
+
+(use template "./template.vaq")
+
+(def tmpl-dir "templates/rpg")
+
+(def tmpl
+   (sys.fs.read-from
+      (cat tmpl-dir "/" "adventurer.tmpl")
+      with: (lambda (p)
+               p.read-text)))
+
+(def guy (json.parse sys.rest.head))
+
+(def content (:))
+
+(proc main ()
+   (each item guy
+      (def which item.head)
+      (def switch which.to-symbol)
+      (case switch
+         (about)     (about item.1 item.2)
+         (brawn
+          fortitude 
+          intellect
+          intuition
+          perception
+          sanity
+          willpower
+          archer
+          artisan
+          athlete
+          healer
+          ranger
+          rogue
+          scholar
+          sneak
+          warrior)   (trait which item.1 item.2)
+         (gifts)     (gifts item.tail)
+         (weapons)   (weapons item.tail)
+         (armor)     (armor item.1 item.2 item.3 item.4)
+         (fortune)   (fortune item.1)
+         (armaments) (arms item.tail)
+         (costs)     (costs item.1 item.2 item.3 item.4)))
+
+   (content.set! 'no-armor-movement   (+ content.athlete-level 10))
+   (content.set! 'no-armor-dodge      (+ content.athlete-level  7))
+   (content.set! 'no-armor-protection (+ content.fortitude-level))
+
+   (def compiled (template.compile tmpl content))
+
+   (print compiled))
+
+(proc make-cell (data)
+   (cat "<td> " data " </td>"))
+
+(proc make-row (data)
+   (cat "<tr> " data " </tr>"))
+
+(proc about (name desc)
+   (content.set! 'adventurer-name name)
+   (content.set! 'adventurer-desc desc))
+
+(proc trait (trait rank cost)
+   (content.set! (send (cat trait "-level") 'to-symbol) rank)
+   (content.set! (send (cat trait "-cost")  'to-symbol) cost))
+
+(proc gifts (gs)
+   (proc format (g)
+      (make-row (make-cell g.0) (make-cell g.1)))
+   (def rows (cat.apply (map format gs) (: with "\n")))
+   (content.set! 'gifts rows))
+
+(proc weapons (ws)
+   (proc format (w)
+      (make-row (make-cell w)))
+   (def items (cat.apply (map format ws) (: with "\n")))
+   (content.set! 'items items))
+
+(proc armor (name move dodge prot)
+   (content.set! 'armor-name name 'armor-movement move 'armor-dodge dodge 'armor-protection prot))
+
+(proc fortune (n)
+   (content.set! 'fortune n))
+
+(proc arms (xs)
+   (proc format (row)
+      (make-row (cat.apply (map make-cell row))))
+   (content.set! 'combat-value-rows (cat.apply (map format xs) (: with "\n"))))
+
+(proc costs (trait-cost skill-cost gift-cost total)
+   (content.set! 'trait-cost trait-cost 'skill-cost skill-cost 'gift-cost gift-cost 'total-cost total))
+
+(main)
+
