@@ -38,7 +38,7 @@ Every spell has an energy level based on its base cost, intensity, area, and dur
 
 <p>
 The raw force of a spell.  For attacks, this translates into damage.
-Each level of intensity adds one to the energy level to a spell (minimum one).
+Each level of energy adds one to the intensity of a spell.
 
 <p>
 <b> Area </b>
@@ -128,18 +128,18 @@ Fun facts:
 
 <p>
 Spells are composed of one or more powers from the Mage or Sorcerer side.
-Each power component of a spell has its own intensity, but all share the same area and duration.
+Each power component of a spell has its own base energy cost, but all share the same intensity, area, and duration.
 
 <p>
 <b> Mage Powers </b>
 
 <table>
    <tr><th> Name          </th><th> Base Energy </th></tr>
-   <tr><td> Alter         </td><td>           0 </td></tr>
-   <tr><td> Barrier       </td><td>           0 </td></tr>
-   <tr><td> Disorient     </td><td>           5 </td></tr>
-   <tr><td> Energy Blast  </td><td>           5 </td></tr>
-   <tr><td> Impact Attack </td><td>           0 </td></tr>
+   <tr><td> Alter         </td><td>           3 </td></tr>
+   <tr><td> Barrier       </td><td>           3 </td></tr>
+   <tr><td> Disorient     </td><td>           6 </td></tr>
+   <tr><td> Energy Blast  </td><td>           6 </td></tr>
+   <tr><td> Impact Attack </td><td>           3 </td></tr>
    <tr><td> Telekinesis   </td><td>          10 </td></tr>
    <tr><td> Portal        </td><td>          10 </td></tr>
 </table>
@@ -254,9 +254,9 @@ to a random world that the caster knows nothing about is suicidal.
    <tr><th> Name      </th><th> Base Energy </th></tr>
    <tr><td> Daze      </td><td>          10 </td></tr>
    <tr><td> Delude    </td><td>          10 </td></tr>
-   <tr><td> Horrify   </td><td>           5 </td></tr>
-   <tr><td> Telepathy </td><td>           0 </td></tr>
-   <tr><td> Torment   </td><td>           5 </td></tr>
+   <tr><td> Horrify   </td><td>           6 </td></tr>
+   <tr><td> Telepathy </td><td>           3 </td></tr>
+   <tr><td> Torment   </td><td>           6 </td></tr>
 </table>
 
 <div class="trait">
@@ -283,7 +283,7 @@ An attempt can be made once per action.
 <div class="trait">
 <b> Horrify </b>
 lets the Sorcerer attack a foe's mind.  The intensity of
-the spell is compared to the target's sanity to determine the
+the spell is compared to the target's Sanity to determine the
 number of shocks inflicted.
 </div>
 

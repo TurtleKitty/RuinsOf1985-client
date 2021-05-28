@@ -3,11 +3,11 @@ $(document).ready(
     function () {
         var powers = {
             mage: [
-                { name: "Alter", base_energy: 0 },
-                { name: "Barrier", base_energy: 0 },
-                { name: "Disorient", base_energy: 5 },
-                { name: "Energy Blast", base_energy: 5 },
-                { name: "Impact Attack", base_energy: 0 },
+                { name: "Alter", base_energy: 3 },
+                { name: "Barrier", base_energy: 3 },
+                { name: "Disorient", base_energy: 6 },
+                { name: "Energy Blast", base_energy: 6 },
+                { name: "Impact Attack", base_energy: 3 },
                 { name: "Telekinesis", base_energy: 10 },
                 { name: "Portal", base_energy: 10 }
             ],
@@ -15,9 +15,9 @@ $(document).ready(
             sorcerer: [
                 { name: "Daze", base_energy: 10 },
                 { name: "Delude", base_energy: 10 },
-                { name: "Horrify", base_energy: 5 },
-                { name: "Telepathy", base_energy: 0 },
-                { name: "Torment", base_energy: 5 }
+                { name: "Horrify", base_energy: 6 },
+                { name: "Telepathy", base_energy: 3 },
+                { name: "Torment", base_energy: 6 }
             ]
         };
 
@@ -52,7 +52,7 @@ $(document).ready(
         function switch_magic_type () {
             var to = $('input[name="magic_type"]:checked').val(),
                 sel = (to === 'mage') ? mage_select : sorcerer_select,
-                row = mkrow([ sel, '<input class="intensity" size="3">', '<span class="energy-cost"> - </span>' ]),
+                row = mkrow([ sel, '<span class="energy-cost"> </span>' ]),
                 nu_tbody = [ row, row, row, row, row ].join("\n")
             ;
 
@@ -78,6 +78,8 @@ $(document).ready(
                 );
             }
 
+            let base_energy = 0;
+
             $('#powers > tbody > tr').each(
                 function () {
                     var p = $(this).find('.powers').val() || 0,
@@ -87,36 +89,37 @@ $(document).ready(
                     ;
 
                     if (p !== '-') {
-                        intensity = parseInt( $(this).find('input.intensity').val() || 0 );
-                        energy = powers[type][p].base_energy + intensity;
+                        energy = powers[type][p].base_energy;
+                        base_energy += energy;
                     }
 
                     $(this).find('.energy-cost').text(energy);
                 }
             );
 
+            $('#base-energy').text(base_energy);
+
+            var intensity = parseInt( $('#intensity').val() );
+
+            if (isNaN(intensity) || intensity < 0) {
+               intensity = 0;
+            }
+
+            $('#intensity-energy').text(intensity);
+
             set_nrg('area');
             set_nrg('duration');
 
-            var total_energy = 0;
-
-            $('.energy-cost').each(
-                function () {
-                    var val = parseInt($(this).text());
-
-                    if (!isNaN(val)) {
-                        total_energy += val;
-                    }
-                }
-            );
-
-            total_energy += parseInt($('#area-energy').text()) + parseInt($('#duration-energy').text());
+            const total_energy = base_energy + ['intensity','area','duration'].map(x => parseInt( $(`#${x}-energy`).text() ))
+                                                                              .reduce((sum, n) => sum + n)
+            ;
 
             $('#total-energy').text(total_energy);
         }
 
         switch_magic_type();
 
+        $('#intensity').change(calculon);
         $('#area').change(calculon);
         $('#duration').change(calculon);
         $('input[name="magic_type"]').change(switch_magic_type);
