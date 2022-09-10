@@ -26,16 +26,20 @@ Mages cast spells affecting the physical world, while Sorcerers weave spells inv
 Though the powers differ, the mechanics are similar.
 
 <p>
-The spellcaster rolls his Intellect trait to determine if a spell succeeds.
-Spells cast at an unwilling target may be resisted.
-Defiance is used to evade spells in the same way Dodge and Parry are used to evade physical attacks.
-The target must be aware of the attack in order to defy it.
+The Mage rolls his Intellect trait to determine if a spell succeeds.
+If aimed at a space, the challenge level is 4 plus any range penalties.
+If aimed at a person, the Mage must roll against the target's Dodge or Parry.
+If the target is a Mage, they may deflect the spell; substitute their Intellect (+7) for Dodge or Parry.
 
 <p>
-To make an offensive spell work, the caster must make a trait check: his Intellect versus the Defiance of the target(s).
-If successful, the mox of this roll is added to the intensity of the spell.
-The caster makes only one roll, even if there are multiple targets. The mox may be different for each.
-Subjects are affected based on the mox of the initial roll once per round for the duration of the spell.
+The Sorcerer rolls his Presence trait to determine if a spell succeeds.
+He must roll against the Defiance of the target (Intellect or Intuition +7).
+If the target is a Sorcerer, they may deflect the spell; substitute their Presence (+7) for Defiance.
+
+<p>
+To make an offensive spell work, the caster must make a trait check as above.
+The caster makes only one roll, even if there are multiple targets.
+Subjects are affected once per round for the duration of the spell.
 
 <p>
 <b> Power and Energy </b>
@@ -51,10 +55,6 @@ Power = Willpower + 10
 
 <p>
 Every spell has an energy level.
-To cast a spell, one must channel that amount of energy and make an Intellect roll vs a challenge level based on the range.
-If a spell is resisted by Defiance, the check is made against that number plus the range modifier.
-
-<p>
 One can cast spells of energy greater than their power level in a number of ways.
 
 <p>
@@ -70,6 +70,16 @@ A sorcerer can sacrifice her sanity for power: 1 point of energy per shock infli
 Either can cast spells beyond their power level by taking extra time.
 Each +3 energy requires roughly a doubling of the time required to cast the spell.
 A concentrating spellcaster may do nothing else except move 1 space per round.
+
+<p>
+Channeling too much power can be dangerous.
+One who concentrates for an hour or longer must make a Fortitude roll versus the hour +7 -
+8 at hour 1, 9 at hour 2, etc.
+Failing this roll makes the spell backfire.
+For Mages, this means taking an energy blast equal in power to the extra energy summoned so far - 
+28 at hour 1, 31 at hour 2, etc.
+For Sorcerers, it means taking a horrify attack of the same magnitude.
+Normal defenses apply.
 
 <div>
    <table class="display-table">
@@ -107,9 +117,9 @@ A concentrating spellcaster may do nothing else except move 1 space per round.
       <tr align="center"><td>  300 </td><td> 25 </td></tr>
       <tr align="center"><td>  400 </td><td> 26 </td></tr>
       <tr align="center"><td>  500 </td><td> 27 </td></tr>
-      <tr align="center"><td>  600 </td><td> 28 </td></tr>
-      <tr align="center"><td>  800 </td><td> 29 </td></tr>
-      <tr align="center"><td> 1000 </td><td> 30 </td></tr>
+      <tr align="center"><td>  1 hour </td><td> 28 </td></tr>
+      <tr align="center"><td>  1 hour 20 min </td><td> 29 </td></tr>
+      <tr align="center"><td>  1 hour 40 min </td><td> 30 </td></tr>
    </table>
    <table class="display-table">
       <tr><th> Time                             </th><th> +Power </th></tr>
@@ -143,7 +153,6 @@ The Adversary should be creative.
 
 <p>
 The damage from an attack spell is based on its intensity.
-Add the mox of the spell roll to this to get the damage.
 
 <p>
 Impact attacks subtract the victim's Protection from the damage.
@@ -154,7 +163,7 @@ Energy blasts subtract the victim's Fortitude from the damage.
 The result is the number of wounds inflicted.
 
 <p>
-Horrify and Torment spells subtract the victim's Sanity from the damage.
+Horrify and Torment spells subtract the victim's Willpower from the damage.
 The result is the number of shocks or wounds inflicted.
 
 <p>
@@ -164,12 +173,13 @@ The result is the number of shocks or wounds inflicted.
 The power of a Disorient spell, a Telekinetic grapple, a Daze, or a Delusion is based on its intensity.
 If the spell roll is successful, the victim is held fast. For TK holds, this
 makes the target immobile, incapable of and vulnerable to physical attacks, but
-does not affect the target's Defiance or ability to cast spells.  For Daze spells,
+does not affect the target's ability to cast spells, deflect Mage spells, or defend against mental attacks.
+For Daze or Delude spells,
 the target is senseless and defenseless; he can do nothing except attempt to break
-free.  Disoriented or deluded entities can move and act, but can't see or hear properly.
+free.  Disoriented or deluded entities can move and act, but can't sense their surroundings.
 
 <p>
-For telekinetic holds, the subject rolls his Brawn vs 7 + the intensity of the spell.
+To escape a telekinetic hold, the subject rolls his Brawn vs 7 + the intensity of the spell.
 For Daze or Delude spells, the subject rolls Willpower.
 For Disorient spells, the subject rolls Perception.
 
@@ -177,40 +187,18 @@ For Disorient spells, the subject rolls Perception.
 The victim gets a free chance to escape the moment the spell is cast.
 After that, the victim can attempt to escape once per action (twice per round).
 If the roll succeeds, the character is free and can act normally on their next action.
-If it fails, that action is lost.
 
 <p>
 <b> Nullify </b>
 
 <p>
 Spellcasters may attempt to nullify hostile spells with their own.
-The nullifier must concentrate for a full round and make a trait check versus the Defiance of the caster.
-If successful, the nullifier must expend an amount of energy equal to the energy of the spell he wishes
-to destroy. This can be used in response to instantaneous spells if the caster has not used up his actions
-for the round. 
+The nullifier must concentrate for a full round and make a trait check versus the Intellect (mage) or Presence (sorcerer) of the caster.
+If successful, the nullifier must expend an amount of energy equal to the energy of the spell he wishes to destroy.
+This can be used in response to instantaneous spells if the caster has not used up his actions for the round. 
 
 <p>
 Mages and Sorcerers can only nullify spells of their own kind.  
-
-<p>
-<b> Physical effects of Mage spells </b>
-
-<p>
-The defense against direct supernatural attacks is always mental, but 
-such attacks may have physical side effects that require physical 
-defenses.  A ball of flame created by a blast spell could be evaded by the Defiance
-of a character, yet turn the forest around that character
-into a very physical inferno.  A telekinetic attack can be evaded by
-Defiance - but if the attack were made against a nearby
-boulder instead, the target would have to use Athlete.
-
-<p>
-Supernatural forces do not allow for fine control, however.  A physical 
-phenomenon created as the result of a magical force cannot be aimed at 
-a character with any sort of precision.  Most should be easier 
-to avoid than a direct assault, having a challenge level of 9 or less
-except in unfortunate circumstances (such as the caster using a hold spell
-to drop a big rock down a well where a character is hiding).
 
 <div class="example">
 
@@ -218,28 +206,29 @@ Nik the wise has a Willpower of 6.  He can cast a spell of energy 16 in one roun
 If he wants to cast a spell of energy 19, he has options: he can burn 3 points of
 Fortune, inflict 3 wounds (or shocks, if he's a Sorcerer) upon himself, make his
 apprentice join him in a group ritual, or take an extra round to cast the spell.
-An energy 22 spell would require 6 Fortune, 6 wounds, 6 shocks, two apprentices, or four rounds.
+An energy 22 spell would require 6 Fortune, 6 wounds or shocks, two apprentices, or four rounds.
 
 </div>
 
 <div class="example">
 
 <p>
-Vunata, a Mage, has the initiative and wishes to make Juk and Tam suffer.
+The mage Vunata has the initiative and wishes to make Juk and Tam suffer.
 He has a Willpower of 6, giving him a Power level of 16.
 He attacks with a fiery blast: intensity 13, area 2 (to hit both enemies), and duration 2 (he wants them to suffer longer).
 This spell requires 19 energy, so Vunata burns 3 Fortune to cast it.
 
 <p>
-Vunata rolls a 9 and adds this to his Intellect (5) for a total of 14.  Juk has an
-Intuition of 2, giving him a Defiance of 9 - the mox is 5, so the spell affects him with
-an intensity of 18.  Tam has an Intellect of 8, giving her a Defiance of 15 - she is unaffected.
+Vunata rolls a 9 and adds this to his Intellect (5) for a total of 14.
+Juk has a Dodge of 14, so the spell affects him.
+Tam, a mage, has an Intellect of 8, giving her a defense of 15.
+She deflects the spell from herself.
 
 <p>
-Juk subtracts his Fortitude (8) from the damage of the spell (18) to get 10.
-This would cause 10 wounds, but Juk burns his last 10 points of Fortune to escape them.
+Juk subtracts his Fortitude (8) from the damage of the spell (13) to get 5.
+This would cause 10 wounds, but Juk burns his last 5 points of Fortune to escape them.
 The spell has a duration of 2, however, so Juk is affected again on the next round.
-He takes 10 wounds.
+He takes 5 wounds.
 
 </div>
 
