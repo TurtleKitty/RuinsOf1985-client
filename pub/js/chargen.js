@@ -1,8 +1,8 @@
 
 $(document).ready(
     function () {
-        var traits = [ "brawn", "fortitude", "intellect", "intuition", "perception", "sanity", "willpower" ],
-            skills = [ "archer", "artisan", "athlete", "healer", "ranger", "rogue", "scholar", "sneak", "warrior" ],
+        var traits = [ "brawn", "fortitude", "intellect", "intuition", "perception", "presence", "willpower" ],
+            skills = [ "archer", "artisan", "athlete", "healer", "performer", "ranger", "rogue", "scholar", "sneak", "warrior" ],
             gifts  = { longevity: 10, mage: 20, mystic: 20, sorcerer: 20, starvision: 10 },
             arms = [
                 { name: "Unarmed",    type: "melee",     defense: 0, power:  0, hands: 2, throwable: false },

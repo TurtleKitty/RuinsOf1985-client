@@ -62,11 +62,15 @@ $(document).ready(
         }
 
         function calculon () {
+            function range_to_energy (range) {
+                return Math.ceil( Math.log2(range/10) * 3 );
+            }
+
             function aord_to_energy (aord) {
                 return Math.ceil( Math.log2(aord) * 3 );
             }
 
-            function set_nrg (name) {
+            function set_nrg (name, converter) {
                 var aord = parseInt( $('#' + name).val() );
 
                 if (isNaN(aord) || aord < 1) {
@@ -74,7 +78,7 @@ $(document).ready(
                 }
 
                 $('#' + name + '-energy').text(
-                    aord_to_energy(aord)
+                    converter(aord)
                 );
             }
 
@@ -107,11 +111,13 @@ $(document).ready(
 
             $('#intensity-energy').text(intensity);
 
-            set_nrg('area');
-            set_nrg('duration');
+            set_nrg('range', range_to_energy);
+            set_nrg('area', aord_to_energy);
+            set_nrg('duration', aord_to_energy);
 
-            const total_energy = base_energy + ['intensity','area','duration'].map(x => parseInt( $(`#${x}-energy`).text() ))
-                                                                              .reduce((sum, n) => sum + n)
+            const total_energy = base_energy +
+               ['intensity','range','area','duration'].map(x => parseInt( $(`#${x}-energy`).text() ))
+                                                      .reduce((sum, n) => sum + n)
             ;
 
             $('#total-energy').text(total_energy);
@@ -120,6 +126,7 @@ $(document).ready(
         switch_magic_type();
 
         $('#intensity').change(calculon);
+        $('#range').change(calculon);
         $('#area').change(calculon);
         $('#duration').change(calculon);
         $('input[name="magic_type"]').change(switch_magic_type);
